@@ -19,76 +19,120 @@ struct AddTransaction: View {
     @State var selectedType: CategoryType = .expense
     @State var showCategoryPicker: Bool = false
     
-    var filteredCategories: [Category] {
-        return categories.filter { $0.type == selectedType }
-    }
-    
     var body: some View {
         NavigationStack {
-            VStack {
-                TextField("100", text: $amount)
-                
-                Picker("Тип категории", selection: $selectedType) {
-                    ForEach(CategoryType.allCases, id: \.self) { type in
-                        Text(type.rawValue)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                Button {
-                    showCategoryPicker.toggle()
-                } label: {
-                    HStack {
-                        Image(systemName: selectedCategory.icon)
-                            .foregroundColor(Color(.black))
-                            .frame(width: 30, height: 30)
-                            .background(Color(selectedCategory.color))
-                            .cornerRadius(10)
-                        if showCategoryPicker != selectedCategory.name.isEmpty {
-                            Text("Выбирете категорию")
-                            
-                        } else {
-                            Text(selectedCategory.name)
-                                .foregroundColor(Color("colorBalanceText"))
-                            Spacer()
-                            Image(systemName: "chevron.forward")
-                                .foregroundColor(Color("colorBalanceText"))
-                                .opacity(0.5)
-                        }
-                       
-                    }
-
-                }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading) {
                     
+                    Section {
+                        TextField("100", text: $amount)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                    } header: {
+                        Text("Введите сумму:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    
+                    Section {
+                        TextField("Заметка", text: $note)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                    } header: {
+                        Text("Введите заметку:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    
+                    
+                    Section {
+                        Picker("Тип категории", selection: $selectedType) {
+                            ForEach(CategoryType.allCases, id: \.self) { type in
+                                Text(type.rawValue)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("colorBalanceBG"))
+                        .cornerRadius(10)
+                        
+                        HStack {
+                            Picker("Категория", selection: $selectedCategory) {
+                                ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
+                                    HStack {
+                                        Image(systemName: category.icon)
+                                            .foregroundColor(Color(.black))
+                                            .frame(width: 30, height: 30)
+                                            .background(Color(category.color))
+                                            .cornerRadius(10)
+                                        Text(category.name)
+                                            .foregroundColor(Color("colorBalanceText"))
+                                    }
+                                }
+                            }
+                            .foregroundColor(Color("colorBalanceText"))
+                            .pickerStyle(.navigationLink)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                        }
+                    } header: {
+                        Text("Назначение:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    
+                    Section {
+                        HStack {
+                            DatePicker("Дата", selection: $date, displayedComponents: .date)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("colorBalanceBG"))
+                        .cornerRadius(10)
+                    } header: {
+                        Text("Выберете дату:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                }
+                .padding(.horizontal, 15)
+                .padding(.top, 20)
                 
-                
-                
-                
-                
-                
-                //                Picker("Категория", selection: $category) {
-                //
-                //                        ForEach(filteredCategories, id: \.self) { category in
-                //                            ScrollView {
-                //                            HStack {
-                //                                Image(systemName: category.icon)
-                ////                                    .foregroundColor(Color(.black))
-                ////                                    .frame(width: 30, height: 30)
-                ////                                    .background(Color(category.color))
-                ////                                    .cornerRadius(10)
-                //                                Text(category.name)
-                //                                   // .foregroundColor(Color("colorBalanceText"))
-                //                              //  Spacer()
-                //                               // Image(systemName: "chevron.forward")
-                ////                                    .foregroundColor(Color("colorBalanceText"))
-                ////                                    .opacity(0.5)
-                //                            }
-                //                        }
-                //                    }
-                //                }
             }
-        } .sheet(isPresented: $showCategoryPicker) {
-            CategoryPicker(selectedCategory: $selectedCategory)
+            .background(Color("colorBG"))
+            .navigationBarTitle("Добавление транзакции", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .font(.title3)
+                            .foregroundColor(Color("colorBalanceText"))
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                        dismiss()
+                    } label: {
+                        Image(systemName: "checkmark.circle")
+                            .font(.title3)
+                            .foregroundColor(Color("colorBalanceText"))
+                    }
+                }
+            }
         }
     }
 }

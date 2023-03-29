@@ -31,3 +31,38 @@ enum CategoryType: String, PersistableEnum, CaseIterable {
     case expense = "Расход"
     case income = "Доход"
 }
+
+extension Float {
+    func formattedWithSeparatorAndCurrency() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.groupingSize = 3
+        formatter.maximumFractionDigits = 0
+        let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+        return "\(formattedNumber) ₽"
+    }
+}
+
+extension Category {
+    // Функция проверяет, есть ли в категории транзакции с выбранным типом (доход или расход)
+    func hasTransactions(type: CategoryType) -> Bool {
+        for transaction in transactions {
+            if transaction.type == type {
+                return true
+            }
+        }
+        return false
+    }
+    
+    // Функция которая вычисляет сумму всех транзакций определенного типа (категории) из списка транзакций.
+    func categoryAmount(type: CategoryType) -> Float {
+        var totalAmount: Float = 0
+        for transaction in transactions {
+            if transaction.type == type {
+                totalAmount += transaction.amount
+            }
+        }
+        return totalAmount
+    }
+}

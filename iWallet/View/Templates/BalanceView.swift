@@ -26,7 +26,7 @@ struct BalanceView: View {
                         .background(iconBG)
                         .cornerRadius(20)
                     Spacer()
-                    Text(formattedCurrencyAmount(amount: amount))
+                    Text(amount.formattedWithSeparatorAndCurrency())
                         .font(.headline).textCase(.uppercase)
                         .fontWeight(.bold)
                         .foregroundColor(amountBG)
@@ -44,16 +44,6 @@ struct BalanceView: View {
             .cornerRadius(10)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-    }
-    
-    func formattedCurrencyAmount(amount: Float) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale.current
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 0
-        
-        return formatter.string(from: NSNumber(value: amount)) ?? ""
     }
 }
 

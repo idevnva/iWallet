@@ -10,20 +10,32 @@ import SwiftUI
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @State var showCategory: Bool = false
+    @State var showTransactionView: Bool = false
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    HStack {
-                        Image(systemName: "clock.circle")
-                            .foregroundColor(Color("colorBlack"))
-                            .frame(width: 30, height: 30)
-                            .background(Color("colorYellow"))
-                            .cornerRadius(10)
-                        Text("Транзакции")
-                            .foregroundColor(Color("colorBalanceText"))
+                    Button {
+                        showTransactionView.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "clock.circle")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color("colorYellow"))
+                                .cornerRadius(10)
+                            Text("Транзакции")
+                                .foregroundColor(Color("colorBalanceText"))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(Color("colorBalanceText"))
+                                .opacity(0.5)
+                        }
                     }
+                    
+                    
+                   
                     Button {
                         showCategory.toggle()
                     } label: {
@@ -67,6 +79,9 @@ struct SettingView: View {
         }
         .fullScreenCover(isPresented: $showCategory) {
             CategoryView()
+        }
+        .sheet(isPresented: $showTransactionView) {
+            TransactionView()
         }
     }
 }

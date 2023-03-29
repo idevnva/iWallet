@@ -22,7 +22,7 @@
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
-		08D38C5229D46BC80078C6C4 /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5129D46BC80078C6C4 /* CategoryPicker.swift */; };
+		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		08558BA329D394840047F959 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		08558BA529D394950047F959 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
-		08D38C5129D46BC80078C6C4 /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
+		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +117,7 @@
 				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
 				08558B9D29D380920047F959 /* AddCategory.swift */,
 				08D38C4F29D465640078C6C4 /* AddTransaction.swift */,
+				08D38C5329D48FE00078C6C4 /* TransactionView.swift */,
 				08558B9629D35ED50047F959 /* Templates */,
 			);
 			path = View;
@@ -128,7 +129,6 @@
 				08558B9729D35F890047F959 /* BalanceView.swift */,
 				08558B9F29D381F10047F959 /* ColorPicker.swift */,
 				08558BA129D388080047F959 /* IconPicker.swift */,
-				08D38C5129D46BC80078C6C4 /* CategoryPicker.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -215,13 +215,13 @@
 				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
 				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
 				08558BA429D394840047F959 /* ModelData.swift in Sources */,
+				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
 				08558B8829D35EA40047F959 /* ContentView.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
 				08558B9E29D380920047F959 /* AddCategory.swift in Sources */,
-				08D38C5229D46BC80078C6C4 /* CategoryPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

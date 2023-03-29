@@ -30,6 +30,7 @@ struct AddCategory: View {
                                 .cornerRadius(10)
                             Spacer()
                         } .padding(.bottom, 15)
+                        
                         Section {
                             VStack(alignment: .leading) {
                                 Picker("CategoryType", selection: $selectedType) {
@@ -48,6 +49,7 @@ struct AddCategory: View {
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
+                        
                         Section {
                             VStack(alignment: .leading) {
                                TextField("Название", text: $name)
