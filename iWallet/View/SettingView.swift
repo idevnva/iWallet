@@ -34,8 +34,6 @@ struct SettingView: View {
                         }
                     }
                     
-                    
-                   
                     Button {
                         showCategory.toggle()
                     } label: {

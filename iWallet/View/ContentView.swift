@@ -54,7 +54,7 @@ struct ContentView: View {
                                         }
                                         
                                         Image(systemName: safeCategory.icon)
-                                            .font(.caption).dynamicTypeSize(.small)
+                                            .font(.system(size: 20))
                                             .foregroundColor(.black)
                                             .frame(width: 30, height: 30)
                                             .background(Color(safeCategory.color))
@@ -67,11 +67,10 @@ struct ContentView: View {
                                             .fontWeight(.light)
                                             .foregroundColor(Color("colorBalanceText"))
                                         
-                                        
                                         Spacer()
                                         
                                         Text(totalAmount.formattedWithSeparatorAndCurrency())
-                                            .font(.title3).bold()
+                                            .font(.headline).bold()
                                     }
                                 }
                                 .padding()
