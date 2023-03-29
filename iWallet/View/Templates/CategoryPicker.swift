@@ -1,19 +1,24 @@
 //
-//  AddCategoryView.swift
+//  CategoryPicker.swift
 //  iWallet
 //
-//  Created by Владислав Новошинский on 28.03.2023.
+//  Created by Владислав Новошинский on 29.03.2023.
 //
 
 import SwiftUI
 import RealmSwift
 
-struct CategoryView: View {
-    @ObservedResults(Category.self) var categories
+struct CategoryPicker: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedResults(Category.self) var categories
+    @Binding var selectedCategory: Category
+    @State var selectedType: CategoryType = .expense
    
-    @State private var selectedType: CategoryType = .expense
-    @State var showAddCategory: Bool = false
+    
+//    var filteredCategories: [Category] {
+//        return categories.filter { $0.type == selectedType }
+//    }
+    
     
     var body: some View {
         NavigationStack {
@@ -28,6 +33,13 @@ struct CategoryView: View {
                                 .cornerRadius(10)
                             Text(category.name)
                                 .foregroundColor(Color("colorBalanceText"))
+                            Spacer()
+                        }
+                        .opacity(category == selectedCategory ? 1.0 : 0.5)
+                        .scaleEffect(category == selectedCategory ? 1.1 : 1.0)
+                        .onTapGesture {
+                            selectedCategory = category
+                            dismiss()
                         }
                     }
                 }
@@ -44,15 +56,7 @@ struct CategoryView: View {
                             .foregroundColor(Color("colorBalanceText"))
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showAddCategory.toggle()
-                    } label: {
-                        Image(systemName: "square.and.pencil.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
-                    }
-                }
+
                 ToolbarItem(placement: .principal) {
                     Picker("Type", selection: $selectedType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in
@@ -61,20 +65,12 @@ struct CategoryView: View {
                     } .pickerStyle(.segmented)
                 }
             }
-        }
-        .sheet(isPresented: $showAddCategory) {
-            AddCategory()
-        }
+        } 
     }
 }
 
-struct CategoryView_Previews: PreviewProvider {
+struct CategoryPicker_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
-        let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
-        
-        CategoryView()
-            .environmentObject(viewModel)
-            .environment(\.realmConfiguration, cofiguration)
+        CategoryPicker(selectedCategory: .constant(Category()))
     }
 }

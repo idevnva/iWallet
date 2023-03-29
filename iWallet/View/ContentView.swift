@@ -12,6 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(Category.self) var categories
     @State private var showSettingView: Bool = false
+    @State private var showAddTransaction: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -35,7 +36,7 @@ struct ContentView: View {
                 
                 HStack {
                     Button {
-                        //
+                        showAddTransaction.toggle()
                     } label: {
                         ZStack {
                             Circle()
@@ -69,6 +70,9 @@ struct ContentView: View {
             .background(Color("colorBG"))
         } .fullScreenCover(isPresented: $showSettingView) {
             SettingView()
+        }
+        .sheet(isPresented: $showAddTransaction) {
+            AddTransaction(selectedCategory: Category())
         }
     }
 }
