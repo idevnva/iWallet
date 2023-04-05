@@ -33,10 +33,10 @@ class SceneViewModel: ObservableObject {
         }
         
         let defaultCategories = [
-            Category(value: ["name": "Продукты", "icon": "snowflake.circle", "color": "colorBlue1", "type": CategoryType.expense]),
-            Category(value: ["name": "Семья", "icon": "heart.circle", "color": "colorRed1", "type": CategoryType.expense]),
-            Category(value: ["name": "Зарплата", "icon": "star.circle", "color": "colorGreen1", "type": CategoryType.income]),
-            Category(value: ["name": "Премия", "icon": "bookmark.circle", "color": "colorYellow1", "type": CategoryType.income])
+            Category(value: ["name": "Продукты", "icon": "snowflake.circle", "color": "colorBlue1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Семья", "icon": "heart.circle", "color": "colorRed1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Зарплата", "icon": "star.circle", "color": "colorGreen1", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Премия", "icon": "bookmark.circle", "color": "colorYellow1", "type": CategoryType.income] as [String : Any])
         ]
         
         try! realm.write {
@@ -71,10 +71,10 @@ class SceneViewModel: ObservableObject {
             print("Ошибка: loadData")
             return
         }
-        
+
         let categoriesResult = realm.objects(Category.self)
         let transactionsResult = realm.objects(TransactionItem.self)
-        
+
         categories = Array(categoriesResult)
         transactions = Array(transactionsResult)
     }

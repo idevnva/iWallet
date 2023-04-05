@@ -34,6 +34,19 @@ struct ContentView: View {
                     }
                     .padding()
                     
+                    Picker("Тип", selection: $selectedCategoryType) {
+                        ForEach(CategoryType.allCases, id: \.self) { type in
+                            Text(type.rawValue)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(10)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color("colorBalanceBG"))
+                    .cornerRadius(10)
+                    .padding(.horizontal, 15)
+                    
+                    
                     VStack(spacing: 0) {
                         // создаем массив транзакций по категориями
                         let categoriesWithTransactionsArray = categoriesWithTransaction(categories: categories)
@@ -42,27 +55,26 @@ struct ContentView: View {
                         let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
                         
                         ForEach(filteredCategoriesArray, id: \.self) { category in
-                            if let safeCategory = category {
-                                let totalAmount = safeCategory.categoryAmount(type: selectedCategoryType)
+                                let totalAmount = category.categoryAmount(type: selectedCategoryType)
                                 VStack(alignment: .leading, spacing: 0) {
                                     HStack {
                                         HStack {
                                             Divider()
-                                                .foregroundColor(Color(safeCategory.color))
+                                                .foregroundColor(Color(category.color))
                                                 .frame(width: 5, height: 40)
-                                                .background(Color(safeCategory.color))
+                                                .background(Color(category.color))
                                         }
                                         
-                                        Image(systemName: safeCategory.icon)
+                                        Image(systemName: category.icon)
                                             .font(.system(size: 20))
                                             .foregroundColor(.black)
                                             .frame(width: 30, height: 30)
-                                            .background(Color(safeCategory.color))
+                                            .background(Color(category.color))
                                             .cornerRadius(5)
                                             .padding(0)
                                         
                                         
-                                        Text(safeCategory.name)
+                                        Text(category.name)
                                             .font(.headline)
                                             .fontWeight(.light)
                                             .foregroundColor(Color("colorBalanceText"))
@@ -71,7 +83,7 @@ struct ContentView: View {
                                         
                                         Text(totalAmount.formattedWithSeparatorAndCurrency())
                                             .font(.headline).bold()
-                                    }
+                                    
                                 }
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: 50)
@@ -83,7 +95,7 @@ struct ContentView: View {
                         }
                     }
                     .cornerRadius(10)
-                    .padding()
+                    .padding(.horizontal, 15)
                 }
                 
                 HStack {
