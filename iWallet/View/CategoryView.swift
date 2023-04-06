@@ -1,14 +1,11 @@
-//
+
 //  AddCategoryView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 import RealmSwift
 
 struct CategoryView: View {
+    @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
    
@@ -19,7 +16,7 @@ struct CategoryView: View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
+                    ForEach(filteredCategories(), id: \.self) { category in
                         HStack {
                             Image(systemName: category.icon)
                                 .foregroundColor(Color(.black))
@@ -29,7 +26,7 @@ struct CategoryView: View {
                             Text(category.name)
                                 .foregroundColor(Color("colorBalanceText"))
                         }
-                    }
+                    } .onDelete(perform: deleteCategory)
                 }
                 .background(Color("colorBG"))
                 .scrollContentBackground(.hidden)
@@ -64,6 +61,18 @@ struct CategoryView: View {
         }
         .sheet(isPresented: $showAddCategory) {
             AddCategory()
+        }
+    }
+    
+    private func filteredCategories() -> [Category] {
+        return categories.filter { $0.type == selectedType
+        }
+    }
+    
+    private func deleteCategory(at offsets: IndexSet) {
+        let filtered = filteredCategories()
+        offsets.forEach { index in
+            viewModel.deleteCategory(id: filtered[index].id)
         }
     }
 }

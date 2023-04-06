@@ -37,13 +37,13 @@ struct TransactionView: View {
                             .font(.title3).bold()
                         Spacer()
                         HStack {
-                                Text(category.name)
-                                    .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
-                                    .font(.caption)
-                                    .multilineTextAlignment(.trailing)
-                                    .dynamicTypeSize(.small)
-                                    .frame(width: 80)
-                                    .padding(0)
+                            Text(category.name)
+                                .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
+                                .font(.caption)
+                                .multilineTextAlignment(.trailing)
+                                .dynamicTypeSize(.small)
+                                .frame(width: 80)
+                                .padding(0)
                             Image(systemName: category.icon)
                                 .font(.caption).dynamicTypeSize(.small)
                                 .foregroundColor(.black)
@@ -73,6 +73,7 @@ struct TransactionView: View {
                         transactionRow(transaction: transaction, category: category)
                     }
                 }
+                .onDelete(perform: deleteTransaction)
             }
             .navigationBarTitle("Транзакции", displayMode: .inline)
             .toolbar {
@@ -86,6 +87,13 @@ struct TransactionView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func deleteTransaction(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let transaction = transactions.reversed()[index]
+            viewModel.deleteTransaction(withId: transaction.id)
         }
     }
 }

@@ -23,9 +23,9 @@ struct AddTransaction: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    
                     Section {
                         TextField("100", text: $amount)
+                            .keyboardType(.decimalPad)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color("colorBalanceBG"))

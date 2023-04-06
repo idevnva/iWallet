@@ -1,9 +1,4 @@
-//
 //  ViewModel.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 29.03.2023.
-//
 
 import Foundation
 import RealmSwift
@@ -104,6 +99,50 @@ class SceneViewModel: ObservableObject {
             print("Ошибка: категория не найдена") // Отладочное сообщение, если категория не найдена
         }
     }
+    
+    func deleteCategory(id: ObjectId) {
+        do {
+            let realm = try Realm()
+            if let category = realm.object(ofType: Category.self, forPrimaryKey: id) {
+                try realm.write {
+                    // Удаление всех транзакций, связанных с категорией
+                    for transaction in category.transactions {
+                        realm.delete(transaction)
+                    }
+
+                    // Удаление категории
+                    realm.delete(category)
+                }
+                loadData()
+            }
+        } catch {
+            print("Error deleting category: \(error)")
+        }
+    }
+
+    
+    func deleteTransaction(withId id: ObjectId) {
+            do {
+                let realm = try Realm()
+
+                if let transaction = realm.object(ofType: TransactionItem.self, forPrimaryKey: id) {
+                    try realm.write {
+                        if let category = transaction.category.first {
+                            if let index = category.transactions.firstIndex(of: transaction) {
+                                category.transactions.remove(at: index)
+                            }
+                        }
+                        realm.delete(transaction)
+                    }
+                    loadData()
+                } else {
+                    print("Транзакция с ID \(id) не найдена")
+                }
+            } catch let error {
+                print("Ошибка удаления транзакции: \(error)")
+            }
+        }
+    
     
     func totalExpenses() -> Float {
         var expenses: Float = 0

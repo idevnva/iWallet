@@ -1,9 +1,4 @@
-//
 //  ModelData.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 29.03.2023.
-//
 
 import Foundation
 import RealmSwift
