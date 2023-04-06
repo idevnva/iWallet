@@ -174,11 +174,11 @@
 			};
 			buildConfigurationList = 08558B7D29D35EA40047F959 /* Build configuration list for PBXProject "iWallet" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ru,
 			);
 			mainGroup = 08558B7929D35EA40047F959;
 			packageReferences = (

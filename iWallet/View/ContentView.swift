@@ -46,6 +46,7 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                     
+                
                     
                     VStack(spacing: 0) {
                         // создаем массив транзакций по категориями
@@ -53,8 +54,45 @@ struct ContentView: View {
                         
                         // фильтруем категории по типу
                         let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
-                        
-                        ForEach(filteredCategoriesArray, id: \.self) { category in
+                            
+                        if filteredCategoriesArray.isEmpty {
+                            
+                            
+                            VStack(alignment: .center) {
+                                Spacer()
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundColor(Color("colorBG"))
+                                    .frame(width: 30, height: 30)
+                                    .background(Color("colorBalanceText"))
+                                    .cornerRadius(25)
+                                Text("""
+                                    Добро пожаловать в iWallet.
+                                    
+                                    Список категорий пока, что пуст.
+                                    Пожалуйста добавьте транзакцию.
+                                    """)
+                                //.foregroundColor(Color("colorBalanceText"))
+                               .multilineTextAlignment(.center)
+                                .foregroundColor(.gray)
+                                .padding()
+                              
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: 300)
+                            .background(Color("colorBalanceBG"))
+                    
+                            
+                           
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        } else {
+                            
+                            ForEach(filteredCategoriesArray, id: \.self) { category in
                                 let totalAmount = category.categoryAmount(type: selectedCategoryType)
                                 VStack(alignment: .leading, spacing: 0) {
                                     HStack {
@@ -83,17 +121,18 @@ struct ContentView: View {
                                         
                                         Text(totalAmount.formattedWithSeparatorAndCurrency())
                                             .font(.headline).bold()
+                                        
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: 50)
+                                    .background(Color("colorBalanceBG"))
                                     
+                                    Divider()
+                                        .padding(.leading, 70)
                                 }
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: 50)
-                                .background(Color("colorBalanceBG"))
-                                
-                                Divider()
-                                    .padding(.leading, 70)
                             }
                         }
-                    }
+                        }
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                 }
