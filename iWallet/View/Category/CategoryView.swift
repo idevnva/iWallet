@@ -46,7 +46,7 @@ struct CategoryView: View {
                                     .foregroundColor(Color(.black))
                                     .frame(width: 30, height: 30)
                                     .background(Color(category.color))
-                                    .cornerRadius(10)
+                                    .cornerRadius(7.5)
                                 Text(category.name)
                                     .foregroundColor(Color("colorBalanceText"))
                             }

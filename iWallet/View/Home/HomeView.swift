@@ -92,7 +92,7 @@ struct HomeView: View {
                                             .foregroundColor(.black)
                                             .frame(width: 30, height: 30)
                                             .background(Color(category.color))
-                                            .cornerRadius(5)
+                                            .cornerRadius(7.5)
                                             .padding(0)
                                         
                                         Text(category.name)
