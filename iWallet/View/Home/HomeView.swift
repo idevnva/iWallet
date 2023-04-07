@@ -62,10 +62,10 @@ struct HomeView: View {
                                     .foregroundColor(.gray)
                                 Spacer(minLength: 20)
                                 
-                                Text("Список транзакций пока, что пуст.")
+                                Text("Список транзакций пока, что пуст,")
                                     .foregroundColor(.gray)
                                     .font(.system(size: 12))
-                                Text("Пожалуйста добавьте транзакцию.")
+                                Text("пожалуйста добавьте транзакцию.")
                                     .foregroundColor(.gray)
                                     .font(.system(size: 12))
                                 Spacer(minLength: 20)
@@ -83,7 +83,7 @@ struct HomeView: View {
                                         HStack {
                                             Divider()
                                                 .foregroundColor(Color(category.color))
-                                                .frame(width: 5, height: 40)
+                                                .frame(width: 5, height: 50)
                                                 .background(Color(category.color))
                                         }
                                         
@@ -111,7 +111,6 @@ struct HomeView: View {
                                     .background(Color("colorBalanceBG"))
                                     
                                     Divider()
-                                        .padding(.leading, 70)
                                 }
                             }
                         }

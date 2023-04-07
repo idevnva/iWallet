@@ -29,10 +29,10 @@ struct CategoryView: View {
                                 .foregroundColor(.gray)
                             Spacer(minLength: 20)
                             
-                            Text("Список категорий пока, что пуст.")
+                            Text("Список категорий пока, что пуст,")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
-                            Text("Пожалуйста добавьте категорию.")
+                            Text("пожалуйста добавьте категорию.")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
                             Spacer(minLength: 20)

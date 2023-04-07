@@ -33,10 +33,10 @@ struct TransactionView: View {
                             .foregroundColor(.gray)
                         Spacer(minLength: 20)
                         
-                        Text("Список транзакций пока, что пуст.")
+                        Text("Список транзакций пока, что пуст,")
                             .foregroundColor(.gray)
                             .font(.system(size: 12))
-                        Text("Пожалуйста добавьте транзакцию.")
+                        Text("пожалуйста добавьте транзакцию.")
                             .foregroundColor(.gray)
                             .font(.system(size: 12))
                         Spacer(minLength: 20)
