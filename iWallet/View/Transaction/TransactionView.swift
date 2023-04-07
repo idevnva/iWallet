@@ -22,9 +22,9 @@ struct TransactionView: View {
                 if transactions.isEmpty {
                     VStack(alignment: .center) {
                         Spacer(minLength: 20)
-                        Image(systemName: "square.and.pencil")
-                            .foregroundColor(Color(.gray))
-                            .font(.system(size: 25))
+                        Image("icon")
+                            .resizable()
+                            .frame(width: 25, height: 25)
                         Spacer()
                         Text("iWallet")
                             .foregroundColor(.gray).bold()

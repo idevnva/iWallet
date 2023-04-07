@@ -20,7 +20,7 @@ struct BalanceView: View {
                         .foregroundColor(Color("colorBlack"))
                         .frame(width: 30, height: 30)
                         .background(iconBG)
-                        .cornerRadius(20)
+                        .cornerRadius(10)
                     Spacer()
                     Text(amount.formattedWithSeparatorAndCurrency())
                         .font(.headline).textCase(.uppercase)

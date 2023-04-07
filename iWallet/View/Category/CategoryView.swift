@@ -15,18 +15,43 @@ struct CategoryView: View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(filteredCategories(), id: \.self) { category in
-                        HStack {
-                            Image(systemName: category.icon)
-                                .font(.system(size: 15))
-                                .foregroundColor(Color(.black))
-                                .frame(width: 30, height: 30)
-                                .background(Color(category.color))
-                                .cornerRadius(10)
-                            Text(category.name)
-                                .foregroundColor(Color("colorBalanceText"))
-                        }
-                    } .onDelete(perform: deleteCategory)
+                    if filteredCategories().isEmpty {
+                        VStack(alignment: .center) {
+                            Spacer(minLength: 20)
+                            Image("icon")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                            Spacer()
+                            Text("iWallet")
+                                .foregroundColor(.gray).bold()
+                                .font(.title)
+                            Text("Добро пожаловать!")
+                                .foregroundColor(.gray)
+                            Spacer(minLength: 20)
+                            
+                            Text("Список категорий пока, что пуст.")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                            Text("Пожалуйста добавьте категорию.")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                            Spacer(minLength: 20)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    } else {
+                        ForEach(filteredCategories(), id: \.self) { category in
+                            HStack {
+                                Image(systemName: category.icon)
+                                    .font(.system(size: 15))
+                                    .foregroundColor(Color(.black))
+                                    .frame(width: 30, height: 30)
+                                    .background(Color(category.color))
+                                    .cornerRadius(10)
+                                Text(category.name)
+                                    .foregroundColor(Color("colorBalanceText"))
+                            }
+                        } .onDelete(perform: deleteCategory)
+                    }
                 }
                 .background(Color("colorBG"))
                 .scrollContentBackground(.hidden)
