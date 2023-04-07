@@ -1,9 +1,4 @@
-//
 //  ContentView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 import RealmSwift
@@ -46,17 +41,14 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                     
-                
-                    
                     VStack(spacing: 0) {
                         // создаем массив транзакций по категориями
                         let categoriesWithTransactionsArray = categoriesWithTransaction(categories: categories)
                         
                         // фильтруем категории по типу
                         let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
-                            
+                        
                         if filteredCategoriesArray.isEmpty {
-                            
                             
                             VStack(alignment: .center) {
                                 Spacer()
@@ -65,30 +57,21 @@ struct ContentView: View {
                                     .frame(width: 30, height: 30)
                                     .background(Color("colorBalanceText"))
                                     .cornerRadius(25)
-                                Text("""
-                                    Добро пожаловать в iWallet.
-                                    
-                                    Список категорий пока, что пуст.
-                                    Пожалуйста добавьте транзакцию.
-                                    """)
-                                //.foregroundColor(Color("colorBalanceText"))
-                               .multilineTextAlignment(.center)
-                                .foregroundColor(.gray)
-                                .padding()
-                              
+                                Spacer()
+                                Text("Добро пожаловать в iWallet.")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                Text("Список категорий пока, что пуст.")
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 12))
+                                Text("Пожалуйста добавьте транзакцию.")
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 12))
+                                Spacer()
                             }
                             .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 300)
+                            .frame(maxWidth: .infinity, maxHeight: 400)
                             .background(Color("colorBalanceBG"))
-                    
-                            
-                           
-                            
-                            
-                            
-                            
-                            
-                            
                             
                         } else {
                             
@@ -104,13 +87,12 @@ struct ContentView: View {
                                         }
                                         
                                         Image(systemName: category.icon)
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             .foregroundColor(.black)
                                             .frame(width: 30, height: 30)
                                             .background(Color(category.color))
                                             .cornerRadius(5)
                                             .padding(0)
-                                        
                                         
                                         Text(category.name)
                                             .font(.headline)
@@ -132,7 +114,7 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        }
+                    }
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                 }

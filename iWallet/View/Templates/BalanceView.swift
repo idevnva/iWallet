@@ -1,9 +1,4 @@
-//
 //  BalanceView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 
@@ -46,7 +41,6 @@ struct BalanceView: View {
         }
     }
 }
-
 
 struct BalanceView_Previews: PreviewProvider {
     static var previews: some View {

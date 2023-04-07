@@ -1,14 +1,10 @@
-//
 //  SettingView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.openURL) var openURL
     @State var showCategory: Bool = false
     @State var showTransactionView: Bool = false
     
@@ -53,6 +49,29 @@ struct SettingView: View {
                     }
                 } header: {
                     Text("Данные")
+                }
+                
+                Section {
+                    Button {
+                        openURL(URL(string: "https://t.me/idevnva")!)
+                    } label: {
+                        HStack {
+                            Image(systemName: "envelope.circle")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color("colorGray1"))
+                                .cornerRadius(10)
+                            Text("Написать разработчику")
+                                .foregroundColor(Color("colorBalanceText"))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(Color("colorBalanceText"))
+                                .opacity(0.5)
+                        }
+                    }
+                    
+                } header: {
+                    Text("Обратная связь")
                 }
             }
             .background(Color("colorBG"))

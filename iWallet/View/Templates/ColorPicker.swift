@@ -1,16 +1,13 @@
-//
 //  SwiftUIView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 
 struct ColorPicker: View {
     @Binding var selectedColor: String
-    private let colors: [String] = ["colorBlue", "colorBlue1","colorBlue2", "colorYellow", "colorYellow1", "colorYellow2", "colorGreen", "colorGreen1", "colorGreen2", "colorRed", "colorRed1", "colorRed2", "colorGray1", "colorGray2", "colorGray"]
-    
+    private let colors: [String] =
+    [
+        "colorBlue", "colorBlue1","colorBlue2", "colorYellow", "colorYellow1", "colorYellow2", "colorGreen", "colorGreen1", "colorGreen2", "colorRed", "colorRed1", "colorRed2", "colorPurple", "colorPurple1", "colorPurple2", "colorBrown", "colorBrown1", "colorBrown2", "colorGray1", "colorGray2", "colorGray"
+    ]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {

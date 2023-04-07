@@ -14,6 +14,7 @@ class SceneViewModel: ObservableObject {
         loadData()
     }
     
+    // Метод проверки на первый запуск
     func checkFirstRun() {
         if UserDefaults.standard.bool(forKey: "hasRunBefore") == false {
             createDefaultCategories()
@@ -21,19 +22,44 @@ class SceneViewModel: ObservableObject {
         }
     }
     
+    // Добавления категорий по умолчанию
     func createDefaultCategories() {
         guard let realm = try? Realm() else {
             print("Ошибка: Не удалось создать категории по умолчанию Realm")
             return
         }
-        
         let defaultCategories = [
-            Category(value: ["name": "Продукты", "icon": "snowflake.circle", "color": "colorBlue1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": "Семья", "icon": "heart.circle", "color": "colorRed1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": "Зарплата", "icon": "star.circle", "color": "colorGreen1", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": "Премия", "icon": "bookmark.circle", "color": "colorYellow1", "type": CategoryType.income] as [String : Any])
+            // Все категории для расхода
+            Category(value: ["name": "Автомобиль", "icon": "car", "color": "colorBlue", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Банк", "icon": "creditcard", "color": "colorBlue1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Бизнес-услуги", "icon": "person.2", "color": "colorBlue2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Благотворительность", "icon": "figure.roll", "color": "colorGreen", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Государство", "icon": "network.badge.shield.half.filled", "color": "colorGreen1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Дети", "icon": "figure.2.and.child.holdinghands", "color": "colorGreen2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Дом", "icon": "house", "color": "colorYellow", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Домашние животные", "icon": "fish", "color": "colorYellow1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Еда вне дома", "icon": "popcorn", "color": "colorYellow2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Здоровье", "icon": "heart", "color": "colorRed", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Красота", "icon": "fleuron", "color": "colorRed1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Мобильная Связь", "icon": "wifi", "color": "colorRed2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Образование", "icon": "book", "color": "colorBrown", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Одежда и обувь", "icon": "backpack", "color": "colorBrown1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Подарки", "icon": "gift", "color": "colorBrown2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Продукты питания", "icon": "cart", "color": "colorPurple", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Путешествия", "icon": "airplane", "color": "colorPurple1", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Развлечения", "icon": "music.mic", "color": "colorPurple2", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Техника", "icon": "display", "color": "colorGray", "type": CategoryType.expense] as [String : Any]),
+            Category(value: ["name": "Транспорт", "icon": "bus.fill", "color": "colorGray1", "type": CategoryType.expense] as [String : Any]),
+            
+            // Все категории для дохода
+            Category(value: ["name": "Аренда", "icon": "key", "color": "colorBlue", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Биржа", "icon": "arrow.triangle.2.circlepath", "color": "colorBlue1", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Дивиденды", "icon": "chart.xyaxis.line", "color": "colorBlue2", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Заработная плата", "icon": "dollarsign", "color": "colorGreen", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Подарки", "icon": "shippingbox.circle", "color": "colorGreen1", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Подработка", "icon": "person.fill.checkmark", "color": "colorGreen2", "type": CategoryType.income] as [String : Any]),
+            Category(value: ["name": "Проценты по счетам", "icon": "percent", "color": "colorYellow", "type": CategoryType.income] as [String : Any])
         ]
-        
         try! realm.write {
             for category in defaultCategories {
                 realm.add(category)
@@ -41,6 +67,21 @@ class SceneViewModel: ObservableObject {
         }
     }
     
+    // Метод для загрузки базы
+    func loadData() {
+        guard let realm = try? Realm() else {
+            print("Ошибка: loadData")
+            return
+        }
+
+        let categoriesResult = realm.objects(Category.self)
+        let transactionsResult = realm.objects(TransactionItem.self)
+
+        categories = Array(categoriesResult)
+        transactions = Array(transactionsResult)
+    }
+    
+    // Метод сохранения категории
     func saveCategory(name: String, icon: String, color: String, type: CategoryType) {
         guard let realm = try? Realm() else {
             print("Ошибка: Не удалось создать экземпляр Realm")
@@ -60,20 +101,8 @@ class SceneViewModel: ObservableObject {
             return print("Ошибка сохранения категории: \(error)")
         }
     }
-
-    func loadData() {
-        guard let realm = try? Realm() else {
-            print("Ошибка: loadData")
-            return
-        }
-
-        let categoriesResult = realm.objects(Category.self)
-        let transactionsResult = realm.objects(TransactionItem.self)
-
-        categories = Array(categoriesResult)
-        transactions = Array(transactionsResult)
-    }
     
+    // Метод сохранения транзакции
     func saveTransaction(amount: Float, date: Date, note: String, type: CategoryType, category: Category) {
         guard let realm = try? Realm() else {
             print("Ошибка: Не удалось создать экземпляр Realm")
@@ -100,6 +129,7 @@ class SceneViewModel: ObservableObject {
         }
     }
     
+    // Метод для удаления категории
     func deleteCategory(id: ObjectId) {
         do {
             let realm = try Realm()
@@ -120,7 +150,7 @@ class SceneViewModel: ObservableObject {
         }
     }
 
-    
+    // Метод для удаления транзакций
     func deleteTransaction(withId id: ObjectId) {
             do {
                 let realm = try Realm()
@@ -143,7 +173,7 @@ class SceneViewModel: ObservableObject {
             }
         }
     
-    
+    // Считает расход
     func totalExpenses() -> Float {
         var expenses: Float = 0
         for transaction in transactions {
@@ -154,6 +184,7 @@ class SceneViewModel: ObservableObject {
         return expenses
     }
     
+    // Считает доход
     func totalIncomes() -> Float {
         var icncome: Float = 0
         for transaction in transactions {
@@ -164,6 +195,7 @@ class SceneViewModel: ObservableObject {
         return icncome
     }
     
+    // Считает балланс
     func balance() -> Float {
         return totalIncomes() - totalExpenses()
     }

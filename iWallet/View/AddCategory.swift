@@ -1,9 +1,4 @@
-//
 //  AddCategory.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 
@@ -14,7 +9,7 @@ struct AddCategory: View {
     @State private var name: String = ""
     @State private var selectedImage: String = "folder.circle"
     @State private var selectedColor: String = "colorBlue"
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,7 +19,7 @@ struct AddCategory: View {
                             Spacer()
                             Image(systemName: selectedImage)
                                 .foregroundColor(Color(.black))
-                                .font(.system(size: 70))
+                                .font(.system(size: 50))
                                 .frame(width: 100, height: 100)
                                 .background(Color(selectedColor))
                                 .cornerRadius(10)
@@ -34,15 +29,15 @@ struct AddCategory: View {
                         Section {
                             VStack(alignment: .leading) {
                                 Picker("CategoryType", selection: $selectedType) {
-                                                   Text("Расход").tag(CategoryType.expense)
-                                                   Text("Доход").tag(CategoryType.income)
-                                               }
-                                               .pickerStyle(SegmentedPickerStyle())
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
+                                    Text("Расход").tag(CategoryType.expense)
+                                    Text("Доход").tag(CategoryType.income)
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("colorBalanceBG"))
+                                .cornerRadius(10)
+                                .padding(.bottom, 15)
                             }
                         } header: {
                             Text("Введите тип:")
@@ -52,7 +47,7 @@ struct AddCategory: View {
                         
                         Section {
                             VStack(alignment: .leading) {
-                               TextField("Название", text: $name)
+                                TextField("Название", text: $name)
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .background(Color("colorBalanceBG"))
@@ -83,7 +78,7 @@ struct AddCategory: View {
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
                                 .cornerRadius(10)
-              
+                            
                         } header: {
                             Text("Выберете цвет:")
                                 .font(.caption).textCase(.uppercase)

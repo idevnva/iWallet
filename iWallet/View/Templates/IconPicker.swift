@@ -1,16 +1,13 @@
-//
 //  SFIconPicker.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 28.03.2023.
-//
 
 import SwiftUI
 
 struct IconPicker: View {
     @Binding var selectedImage: String
-    private let images: [String] = ["folder.circle", "paperplane.circle", "tray.circle", "circle.circle", "circle.hexagongrid.circle", "book.circle", "newspaper.circle", "bookmark.circle", "graduationcap.circle", "backpack.circle", "paperclip.circle", "person.circle", "sportscourt.circle", "trophy.circle", "command.circle", "cloud.circle", "snowflake.circle", "drop.circle", "stop.circle", "circle.grid.3x3.circle", "star.circle", "heart.circle"]
-    
+    private let images: [String] =
+    [
+        "car", "box.truck", "car.2", "creditcard", "banknote", "giftcard", "person.2", "person.bust", "figure.wave", "figure.roll", "circle.hexagonpath", "captions.bubble", "network.badge.shield.half.filled", "icloud", "bonjour", "figure.2.and.child.holdinghands", "figure.and.child.holdinghands", "face.smiling", "house", "sofa", "fireplace", "fish", "hare", "pawprint", "popcorn", "balloon.2", "figure.walk", "heart", "pill", "cross", "fleuron", "wand.and.stars.inverse", "pencil.tip", "wifi", "antenna.radiowaves.left.and.right", "network", "book", "graduationcap", "pencil.and.ruler", "backpack", "tshirt", "tag", "gift", "shippingbox", "party.popper.fill", "cart", "carrot", "airpods.chargingcase", "airplane", "sailboat", "road.lanes", "music.mic", "theatermasks", "birthday.cake", "display", "applewatch.watchface", "gamecontroller", "bus.fill", "cablecar", "steeringwheel", "key", "door.right.hand.closed", "house.and.flag", "arrow.triangle.2.circlepath", "dollarsign.arrow.circlepath", "hourglass", "chart.xyaxis.line", "creditcard.and.123", "chart.bar", "dollarsign", "rublesign", "eurosign", "shippingbox.circle", "timelapse", "camera.metering.matrix", "person.fill.checkmark", "person.crop.square.filled.and.at.rectangle.fill", "hand.thumbsup", "percent", "sum", "number"
+    ]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -20,7 +17,7 @@ struct IconPicker: View {
                         VStack {
                             Image(systemName: image)
                                 .foregroundColor(Color("colorBalanceText"))
-                                .font(.system(size: 40))
+                                .font(.system(size: 30))
                         }
                     }
                     .opacity(image == selectedImage ? 1.0 : 0.5)
@@ -30,7 +27,7 @@ struct IconPicker: View {
                     }
                 }
             } .padding(.vertical, 5)
-        } 
+        }
     }
 }
 

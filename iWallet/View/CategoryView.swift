@@ -1,4 +1,3 @@
-
 //  AddCategoryView.swift
 
 import SwiftUI
@@ -8,7 +7,7 @@ struct CategoryView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
-   
+    
     @State private var selectedType: CategoryType = .expense
     @State var showAddCategory: Bool = false
     
@@ -19,6 +18,7 @@ struct CategoryView: View {
                     ForEach(filteredCategories(), id: \.self) { category in
                         HStack {
                             Image(systemName: category.icon)
+                                .font(.system(size: 15))
                                 .foregroundColor(Color(.black))
                                 .frame(width: 30, height: 30)
                                 .background(Color(category.color))

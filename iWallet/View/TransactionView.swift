@@ -1,9 +1,4 @@
-//
 //  TransactionView.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 29.03.2023.
-//
 
 import SwiftUI
 import RealmSwift
@@ -42,7 +37,6 @@ struct TransactionView: View {
                                 .font(.caption)
                                 .multilineTextAlignment(.trailing)
                                 .dynamicTypeSize(.small)
-                                .frame(width: 80)
                                 .padding(0)
                             Image(systemName: category.icon)
                                 .font(.caption).dynamicTypeSize(.small)
@@ -63,17 +57,36 @@ struct TransactionView: View {
         .frame(height: 50)
     }
     
-    
     var body: some View {
         NavigationStack {
             List {
-                ForEach(transactions.reversed(), id: \.self) { transaction in
-                    let matchingCategories = categories.filter { $0.id == transaction.categoryId }
-                    if let category = matchingCategories.first {
-                        transactionRow(transaction: transaction, category: category)
+                if transactions.isEmpty {
+                    VStack(alignment: .center) {
+                        Spacer()
+                        Image(systemName: "exclamationmark.circle")
+                            .foregroundColor(Color("colorBG"))
+                            .frame(width: 30, height: 30)
+                            .background(Color("colorBalanceText"))
+                            .cornerRadius(25)
+                        Text("Список транзакций")
+                            .foregroundColor(.gray)
+                        Text("пока, что пуст.")
+                            .foregroundColor(.gray)
+                        Spacer()
                     }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    
+                } else {
+                    
+                    ForEach(transactions.reversed(), id: \.self) { transaction in
+                        let matchingCategories = categories.filter { $0.id == transaction.categoryId }
+                        if let category = matchingCategories.first {
+                            transactionRow(transaction: transaction, category: category)
+                        }
+                    }
+                    .onDelete(perform: deleteTransaction)
                 }
-                .onDelete(perform: deleteTransaction)
             }
             .navigationBarTitle("Транзакции", displayMode: .inline)
             .toolbar {

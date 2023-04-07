@@ -1,9 +1,4 @@
-//
 //  AddTransaction.swift
-//  iWallet
-//
-//  Created by Владислав Новошинский on 29.03.2023.
-//
 
 import SwiftUI
 import RealmSwift
@@ -49,7 +44,6 @@ struct AddTransaction: View {
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
-                    
                     
                     Section {
                         Picker("Тип категории", selection: $selectedType) {
