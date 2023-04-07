@@ -3,7 +3,7 @@
 import SwiftUI
 import RealmSwift
 
-struct ContentView: View {
+struct HomeView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(Category.self) var categories
     @State private var showSettingView: Bool = false
@@ -184,12 +184,12 @@ struct ContentView: View {
     
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = SceneViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
-        ContentView()
+        HomeView()
             .environmentObject(viewModel)
             .environment(\.realmConfiguration, cofiguration)
     }

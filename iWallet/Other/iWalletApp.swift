@@ -15,7 +15,7 @@ struct iWalletApp: App {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environmentObject(viewModel)
         }
     }

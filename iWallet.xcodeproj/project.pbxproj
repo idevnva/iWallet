@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B8529D35EA40047F959 /* iWalletApp.swift */; };
-		08558B8829D35EA40047F959 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B8729D35EA40047F959 /* ContentView.swift */; };
+		08558B8829D35EA40047F959 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B8729D35EA40047F959 /* HomeView.swift */; };
 		08558B8A29D35EA40047F959 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08558B8929D35EA40047F959 /* Assets.xcassets */; };
 		08558B8D29D35EA40047F959 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08558B8C29D35EA40047F959 /* Preview Assets.xcassets */; };
 		08558B9829D35F890047F959 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9729D35F890047F959 /* BalanceView.swift */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		08558B8229D35EA40047F959 /* iWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08558B8529D35EA40047F959 /* iWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iWalletApp.swift; sourceTree = "<group>"; };
-		08558B8729D35EA40047F959 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		08558B8729D35EA40047F959 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		08558B8929D35EA40047F959 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08558B8C29D35EA40047F959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08558B9729D35F890047F959 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
@@ -112,12 +112,10 @@
 		08558B9529D35EC70047F959 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				08558B8729D35EA40047F959 /* ContentView.swift */,
-				08558B9929D36D6D0047F959 /* SettingView.swift */,
-				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
-				08558B9D29D380920047F959 /* AddCategory.swift */,
-				08D38C4F29D465640078C6C4 /* AddTransaction.swift */,
-				08D38C5329D48FE00078C6C4 /* TransactionView.swift */,
+				08D1C19B29E0A3C000B58CDE /* Home */,
+				08D1C19A29E0A39200B58CDE /* Transaction */,
+				08D1C19929E0A38900B58CDE /* Category */,
+				08D1C19C29E0A3C800B58CDE /* Setting */,
 				08558B9629D35ED50047F959 /* Templates */,
 			);
 			path = View;
@@ -131,6 +129,40 @@
 				08558BA129D388080047F959 /* IconPicker.swift */,
 			);
 			path = Templates;
+			sourceTree = "<group>";
+		};
+		08D1C19929E0A38900B58CDE /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
+				08558B9D29D380920047F959 /* AddCategory.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		08D1C19A29E0A39200B58CDE /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				08D38C5329D48FE00078C6C4 /* TransactionView.swift */,
+				08D38C4F29D465640078C6C4 /* AddTransaction.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		08D1C19B29E0A3C000B58CDE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				08558B8729D35EA40047F959 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		08D1C19C29E0A3C800B58CDE /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				08558B9929D36D6D0047F959 /* SettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,7 +249,7 @@
 				08558BA429D394840047F959 /* ModelData.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
-				08558B8829D35EA40047F959 /* ContentView.swift in Sources */,
+				08558B8829D35EA40047F959 /* HomeView.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
@@ -356,8 +388,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,9 +397,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iDevnva.iWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -385,8 +420,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,9 +429,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iDevnva.iWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

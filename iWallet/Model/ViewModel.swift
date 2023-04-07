@@ -3,7 +3,7 @@
 import Foundation
 import RealmSwift
 
-class SceneViewModel: ObservableObject {
+final class SceneViewModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var transactions: [TransactionItem] = []
     
@@ -13,6 +13,24 @@ class SceneViewModel: ObservableObject {
         checkFirstRun()
         loadData()
     }
+    
+    // Метод для загрузки базы
+    func loadData() {
+        guard let realm = try? Realm() else {
+            print("Ошибка: loadData")
+            return
+        }
+
+        let categoriesResult = realm.objects(Category.self)
+        let transactionsResult = realm.objects(TransactionItem.self)
+
+        categories = Array(categoriesResult)
+        transactions = Array(transactionsResult)
+    }
+}
+
+
+extension SceneViewModel {
     
     // Метод проверки на первый запуск
     func checkFirstRun() {
@@ -67,20 +85,6 @@ class SceneViewModel: ObservableObject {
         }
     }
     
-    // Метод для загрузки базы
-    func loadData() {
-        guard let realm = try? Realm() else {
-            print("Ошибка: loadData")
-            return
-        }
-
-        let categoriesResult = realm.objects(Category.self)
-        let transactionsResult = realm.objects(TransactionItem.self)
-
-        categories = Array(categoriesResult)
-        transactions = Array(transactionsResult)
-    }
-    
     // Метод сохранения категории
     func saveCategory(name: String, icon: String, color: String, type: CategoryType) {
         guard let realm = try? Realm() else {
@@ -98,7 +102,7 @@ class SceneViewModel: ObservableObject {
             }
             return print("Категория сохранена: \(newCategory)") // отладочное сообщение
         } catch {
-            return print("Ошибка сохранения категории: \(error)")
+            return print("Ошибка сохранения категории: \(error)") // отладочное сообщение
         }
     }
     
@@ -219,5 +223,4 @@ class SceneViewModel: ObservableObject {
         
         return totalAmount / Float(days)
     }
-    
 }
