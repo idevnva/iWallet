@@ -8,7 +8,7 @@ struct CategoryView: View {
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
     
-    @State private var selectedType: CategoryType = .expense
+    @State var selectedType: CategoryType = .expense
     @State var showAddCategory: Bool = false
     
     var body: some View {

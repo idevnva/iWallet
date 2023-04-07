@@ -162,7 +162,7 @@ struct HomeView: View {
     }
     
     // Функция которая фильтрует список категорий, чтобы найти только те, которые имеют транзакции определенного типа.
-    func categoriesWithTransaction(categories: Results<Category>) -> [Category] {
+   private func categoriesWithTransaction(categories: Results<Category>) -> [Category] {
         var result: [Category] = []
         for category in categories {
             if category.hasTransactions(type: selectedCategoryType) {
@@ -172,7 +172,7 @@ struct HomeView: View {
         return result
     }
     // Функция фильтрует категории из массива categories, сохраняя только те, сумма транзакций которых для заданного типа type (доход или расход) больше 0
-    func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
+   private func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
         var result: [Category] = []
         for category in categories {
             if category.categoryAmount(type: type) > 0 {

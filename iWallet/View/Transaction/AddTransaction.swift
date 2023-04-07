@@ -7,6 +7,7 @@ struct AddTransaction: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
+    
     @State var selectedCategory: Category
     @State var amount: String = ""
     @State var date: Date = Date()

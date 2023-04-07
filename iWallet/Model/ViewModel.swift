@@ -15,7 +15,7 @@ final class SceneViewModel: ObservableObject {
     }
     
     // Метод для загрузки базы
-    func loadData() {
+   private func loadData() {
         guard let realm = try? Realm() else {
             print("Ошибка: loadData")
             return
@@ -33,7 +33,7 @@ final class SceneViewModel: ObservableObject {
 extension SceneViewModel {
     
     // Метод проверки на первый запуск
-    func checkFirstRun() {
+    private func checkFirstRun() {
         if UserDefaults.standard.bool(forKey: "hasRunBefore") == false {
             createDefaultCategories()
             UserDefaults.standard.set(true, forKey: "hasRunBefore")
@@ -41,7 +41,7 @@ extension SceneViewModel {
     }
     
     // Добавления категорий по умолчанию
-    func createDefaultCategories() {
+    private func createDefaultCategories() {
         guard let realm = try? Realm() else {
             print("Ошибка: Не удалось создать категории по умолчанию Realm")
             return

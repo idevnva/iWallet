@@ -5,6 +5,7 @@ import SwiftUI
 struct AddCategory: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @Environment(\.dismiss) var dismiss
+    
     @State private var selectedType: CategoryType = .expense
     @State private var name: String = ""
     @State private var selectedImage: String = "folder.circle"

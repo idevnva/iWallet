@@ -5,6 +5,7 @@ import SwiftUI
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.openURL) var openURL
+    
     @State var showCategory: Bool = false
     @State var showTransactionView: Bool = false
     

@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct BalanceView: View {
+    
     let amount: Float
     let type: String
     let icon: String
