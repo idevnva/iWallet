@@ -23,7 +23,7 @@ struct AddCategory: View {
                                 .font(.system(size: 50))
                                 .frame(width: 100, height: 100)
                                 .background(Color(selectedColor))
-                                .cornerRadius(10)
+                                .cornerRadius(25)
                             Spacer()
                         } .padding(.bottom, 15)
                         
