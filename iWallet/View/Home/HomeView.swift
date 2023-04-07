@@ -49,28 +49,29 @@ struct HomeView: View {
                         let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
                         
                         if filteredCategoriesArray.isEmpty {
-                            
                             VStack(alignment: .center) {
+                                Spacer(minLength: 20)
+                                Image(systemName: "square.and.pencil")
+                                    .foregroundColor(Color(.gray))
+                                    .font(.system(size: 25))
                                 Spacer()
-                                Image(systemName: "exclamationmark.circle")
-                                    .foregroundColor(Color("colorBG"))
-                                    .frame(width: 30, height: 30)
-                                    .background(Color("colorBalanceText"))
-                                    .cornerRadius(25)
-                                Spacer()
-                                Text("Добро пожаловать в iWallet.")
+                                Text("iWallet")
+                                    .foregroundColor(.gray).bold()
+                                    .font(.title)
+                                Text("Добро пожаловать!")
                                     .foregroundColor(.gray)
-                                Spacer()
-                                Text("Список категорий пока, что пуст.")
+                                Spacer(minLength: 20)
+                                
+                                Text("Список транзакций пока, что пуст.")
                                     .foregroundColor(.gray)
                                     .font(.system(size: 12))
                                 Text("Пожалуйста добавьте транзакцию.")
                                     .foregroundColor(.gray)
                                     .font(.system(size: 12))
-                                Spacer()
+                                Spacer(minLength: 20)
                             }
                             .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 400)
+                            .frame(maxWidth: .infinity, maxHeight: 300)
                             .background(Color("colorBalanceBG"))
                             
                         } else {
@@ -162,7 +163,7 @@ struct HomeView: View {
     }
     
     // Функция которая фильтрует список категорий, чтобы найти только те, которые имеют транзакции определенного типа.
-   private func categoriesWithTransaction(categories: Results<Category>) -> [Category] {
+    private func categoriesWithTransaction(categories: Results<Category>) -> [Category] {
         var result: [Category] = []
         for category in categories {
             if category.hasTransactions(type: selectedCategoryType) {
@@ -172,7 +173,7 @@ struct HomeView: View {
         return result
     }
     // Функция фильтрует категории из массива categories, сохраняя только те, сумма транзакций которых для заданного типа type (доход или расход) больше 0
-   private func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
+    private func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
         var result: [Category] = []
         for category in categories {
             if category.categoryAmount(type: type) > 0 {

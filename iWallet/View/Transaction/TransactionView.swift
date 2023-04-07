@@ -21,20 +21,27 @@ struct TransactionView: View {
             List {
                 if transactions.isEmpty {
                     VStack(alignment: .center) {
+                        Spacer(minLength: 20)
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(Color(.gray))
+                            .font(.system(size: 25))
                         Spacer()
-                        Image(systemName: "exclamationmark.circle")
-                            .foregroundColor(Color("colorBG"))
-                            .frame(width: 30, height: 30)
-                            .background(Color("colorBalanceText"))
-                            .cornerRadius(25)
-                        Text("Список транзакций")
+                        Text("iWallet")
+                            .foregroundColor(.gray).bold()
+                            .font(.title)
+                        Text("Добро пожаловать!")
                             .foregroundColor(.gray)
-                        Text("пока, что пуст.")
+                        Spacer(minLength: 20)
+                        
+                        Text("Список транзакций пока, что пуст.")
                             .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, maxHeight: 300)
+                            .font(.system(size: 12))
+                        Text("Пожалуйста добавьте транзакцию.")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 12))
+                        Spacer(minLength: 20)
+                }
+                .frame(maxWidth: .infinity, maxHeight: 300)
                     
                 } else {
                     
