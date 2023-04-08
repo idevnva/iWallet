@@ -54,7 +54,6 @@ struct TransactionView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
             .navigationBarTitle("Транзакции", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
