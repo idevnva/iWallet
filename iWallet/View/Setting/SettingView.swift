@@ -53,6 +53,43 @@ struct SettingView: View {
                 }
                 
                 Section {
+                    
+                    Button {
+                        openURL(URL(string: "https://idevnva.com/")!)
+                    } label: {
+                        HStack {
+                            Image(systemName: "network")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color("colorRed"))
+                                .cornerRadius(7.5)
+                            Text("Веб сайт")
+                                .foregroundColor(Color("colorBalanceText"))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(Color("colorBalanceText"))
+                                .opacity(0.5)
+                        }
+                    }
+                    
+                    Button {
+                        openURL(URL(string: "https://t.me/iwalletapp")!)
+                    } label: {
+                        HStack {
+                            Image(systemName: "person.2.circle")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color("colorGreen"))
+                                .cornerRadius(7.5)
+                            Text("Сообщество")
+                                .foregroundColor(Color("colorBalanceText"))
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundColor(Color("colorBalanceText"))
+                                .opacity(0.5)
+                        }
+                    }
+                    
                     Button {
                         openURL(URL(string: "https://t.me/idevnva")!)
                     } label: {
