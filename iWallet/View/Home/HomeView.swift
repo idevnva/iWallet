@@ -18,7 +18,7 @@ struct HomeView: View {
                         HStack {
                             BalanceView(amount: viewModel.balance(), type: "Баланс", icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.averageDailyAmount(), type: "Средняя за день", icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                            BalanceView(amount: viewModel.averageDailyExpense(), type: "Средний расход", icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
                         }
                         Spacer(minLength: 10)
                         HStack {
@@ -52,10 +52,10 @@ struct HomeView: View {
                         let _: () = filteredCategoriesArray.sort(by: { $0.categoryAmount(type: selectedCategoryType) > $1.categoryAmount(type: selectedCategoryType)})
                         
                         if filteredCategoriesArray.isEmpty {
-                           previewCard()
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 300)
-                            .background(Color("colorBalanceBG"))
+                            previewCard()
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: 300)
+                                .background(Color("colorBalanceBG"))
                             
                         } else {
                             
@@ -173,7 +173,6 @@ struct HomeView: View {
         }
         return result
     }
-    
 }
 
 struct HomeView_Previews: PreviewProvider {

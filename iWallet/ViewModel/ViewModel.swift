@@ -203,23 +203,44 @@ extension SceneViewModel {
         return totalIncomes() - totalExpenses()
     }
     
-    // Для расчета средней суммы за день, сначала найдем общее количество дней между самой ранней и самой поздней транзакцией, а затем разделим общую сумму транзакций на количество дней
+    // Не нужная функция оставил вдруг понадобиться
+    // Расчет средней суммы за день, сначала найдем общее количество дней между самой ранней и самой поздней транзакцией, а затем разделим общую сумму транзакций на количество дней
     func averageDailyAmount() -> Float {
         guard let earliestTransaction = transactions.min(by: { $0.date < $1.date }),
               let latestTransaction = transactions.max(by: { $0.date < $1.date }) else {
             return 0
         }
-        
+
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: earliestTransaction.date, to: latestTransaction.date)
         guard let days = components.day, days > 0 else {
             return 0
         }
-        
+
         let totalAmount = transactions.reduce(0) { (result, transaction) -> Float in
             return result + transaction.amount
         }
-        
+
         return totalAmount / Float(days)
     }
+    
+    // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
+    func averageDailyExpense() -> Float {
+        let expenseTransactions = transactions.filter { $0.type == .expense }
+          guard !expenseTransactions.isEmpty else {
+              return 0
+          }
+
+          let uniqueExpenseDates = Set(expenseTransactions.map { transaction -> Date in
+              let calendar = Calendar.current
+              let components = calendar.dateComponents([.year, .month, .day], from: transaction.date)
+              return calendar.date(from: components) ?? transaction.date
+          })
+
+          let daysWithTransactions = uniqueExpenseDates.count
+          
+          let totalExpenseAmount = totalExpenses()
+
+          return totalExpenseAmount / Float(daysWithTransactions)
+      }
 }

@@ -13,7 +13,7 @@ struct TransactionView: View {
         NavigationStack {
             List {
                 if transactions.isEmpty {
-                   previewCard()
+                    previewCard()
                 } else {
                     let groupedTransactions = transactionsByDate(Array(transactions))
                     
@@ -26,7 +26,9 @@ struct TransactionView: View {
                                     transactionRow(transaction: transaction, category: category)
                                 }
                             }
-                            .onDelete(perform: deleteTransaction)
+                            .onDelete(perform: { indexSet in
+                                deleteTransaction(at: indexSet, from: sortedTransactions)
+                            })
                         }
                     }
                 }
@@ -100,10 +102,10 @@ struct TransactionView: View {
     }
     
     // Метод удаления транзакций
-    private func deleteTransaction(at offsets: IndexSet) {
+    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
         withAnimation {
             offsets.forEach { index in
-                let transaction = transactions.reversed()[index]
+                let transaction = sortedTransactions[index]
                 viewModel.deleteTransaction(withId: transaction.id)
             }
         }
@@ -131,7 +133,7 @@ struct TransactionView: View {
     }
     
     // Метод фильтрации категорий
-   private func filterCategories(categories: [Category], transaction: TransactionItem) -> Category? {
+    private func filterCategories(categories: [Category], transaction: TransactionItem) -> Category? {
         for category in categories {
             if category.id == transaction.categoryId {
                 return category

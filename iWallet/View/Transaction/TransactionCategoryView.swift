@@ -73,7 +73,9 @@ struct TransactionCategoryView: View {
                             .padding(.vertical, 5)
                             .frame(height: 50)
                         }
-                        .onDelete(perform: deleteTransaction)
+                        .onDelete(perform: { indexSet in
+                            deleteTransaction(at: indexSet, from: sortedTransactions)
+                        })
                     }
                 }
             }
@@ -119,10 +121,10 @@ struct TransactionCategoryView: View {
     }
     
     // Метод удаления транзакций
-    private func deleteTransaction(at offsets: IndexSet) {
+    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
         withAnimation {
             offsets.forEach { index in
-                let transaction = transactions.reversed()[index]
+                let transaction = sortedTransactions[index]
                 viewModel.deleteTransaction(withId: transaction.id)
             }
         }
