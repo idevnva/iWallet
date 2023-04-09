@@ -81,41 +81,48 @@ struct HomeView: View {
                             
                             ForEach(filteredCategoriesArray, id: \.self) { category in
                                 let totalAmount = category.categoryAmount(type: selectedCategoryType)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    HStack {
+                                NavigationLink(destination: TransactionCategoryView(selectedCategory: .constant(category))) {
+                                    VStack(alignment: .leading, spacing: 0) {
                                         HStack {
-                                            Divider()
-                                                .foregroundColor(Color(category.color))
-                                                .frame(width: 5, height: 50)
+                                            HStack {
+                                                Divider()
+                                                    .foregroundColor(Color(category.color))
+                                                    .frame(width: 5, height: 50)
+                                                    .background(Color(category.color))
+                                            }
+                                            
+                                            Image(systemName: category.icon)
+                                                .font(.system(size: 15))
+                                                .foregroundColor(.black)
+                                                .frame(width: 30, height: 30)
                                                 .background(Color(category.color))
+                                                .cornerRadius(7.5)
+                                                .padding(0)
+                                            
+                                            Text(category.name)
+                                                .font(.headline)
+                                                .fontWeight(.light)
+                                                .foregroundColor(Color("colorBalanceText"))
+                                            
+                                            Spacer()
+                                            
+                                            Text(totalAmount.formattedWithSeparatorAndCurrency())
+                                                .font(.headline).bold()
+                                                .foregroundColor(Color("colorBalanceText"))
+                                           
+                                            Image(systemName: "chevron.forward")
+                                                .foregroundColor(Color("colorBalanceText"))
+                                                .opacity(0.5)
+                                            
                                         }
+                                        .padding()
+                                        .frame(maxWidth: .infinity, maxHeight: 50)
+                                        .background(Color("colorBalanceBG"))
                                         
-                                        Image(systemName: category.icon)
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.black)
-                                            .frame(width: 30, height: 30)
-                                            .background(Color(category.color))
-                                            .cornerRadius(7.5)
-                                            .padding(0)
-                                        
-                                        Text(category.name)
-                                            .font(.headline)
-                                            .fontWeight(.light)
-                                            .foregroundColor(Color("colorBalanceText"))
-                                        
-                                        Spacer()
-                                        
-                                        Text(totalAmount.formattedWithSeparatorAndCurrency())
-                                            .font(.headline).bold()
-                                        
+                                        Divider()
                                     }
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: 50)
-                                    .background(Color("colorBalanceBG"))
-                                    
-                                    Divider()
                                 }
-                            }
+                           }
                         }
                     }
                     .cornerRadius(10)
@@ -175,6 +182,7 @@ struct HomeView: View {
         }
         return result
     }
+    
     // Функция фильтрует категории из массива categories, сохраняя только те, сумма транзакций которых для заданного типа type (доход или расход) больше 0
     private func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
         var result: [Category] = []
