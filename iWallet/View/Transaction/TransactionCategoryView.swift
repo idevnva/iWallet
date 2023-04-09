@@ -14,63 +14,67 @@ struct TransactionCategoryView: View {
     
     var body: some View {
         List {
-            let groupedTransactions = transactionsByDate(Array(filteredTransactions))
-            ForEach(groupedTransactions.keys.sorted(by: { $0 > $1 }), id: \.self) { date in
-                Section(header: Text(date, style: .date).bold()) {
-                    let sortedTransactions = sortTransactionsByDate(transactions: groupedTransactions[date]!)
-                    
-                    ForEach(sortedTransactions, id: \.self) { transaction in
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack {
+            if transactions.isEmpty {
+                previewCard()
+            } else {
+                let groupedTransactions = transactionsByDate(Array(filteredTransactions))
+                ForEach(groupedTransactions.keys.sorted(by: { $0 > $1 }), id: \.self) { date in
+                    Section(header: Text(date, style: .date).bold()) {
+                        let sortedTransactions = sortTransactionsByDate(transactions: groupedTransactions[date]!)
+                        
+                        ForEach(sortedTransactions, id: \.self) { transaction in
+                            VStack(alignment: .leading, spacing: 0) {
                                 HStack {
-                                    Divider()
-                                        .foregroundColor(Color(selectedCategory.color))
-                                        .frame(width: 5, height: 72)
-                                        .background(Color(selectedCategory.color))
-                                } .padding(.trailing, 3)
-                                
-                                VStack(alignment: .leading) {
                                     HStack {
-                                        if transaction.type == CategoryType.expense {
-                                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency())")
-                                                .font(.title3).bold()
-                                        } else {
-                                            Text(transaction.amount.formattedWithSeparatorAndCurrency())
-                                                .font(.title3).bold()
-                                        }
-                                        Spacer()
+                                        Divider()
+                                            .foregroundColor(Color(selectedCategory.color))
+                                            .frame(width: 5, height: 72)
+                                            .background(Color(selectedCategory.color))
+                                    } .padding(.trailing, 3)
+                                    
+                                    VStack(alignment: .leading) {
                                         HStack {
-                                            Text(selectedCategory.name)
-                                                .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
-                                                .font(.caption)
-                                                .multilineTextAlignment(.trailing)
-                                                .dynamicTypeSize(.small)
-                                                .padding(0)
-                                            Image(systemName: selectedCategory.icon)
-                                                .font(.caption).dynamicTypeSize(.small)
-                                                .foregroundColor(.black)
-                                                .frame(width: 20, height: 20)
-                                                .background(Color(selectedCategory.color))
-                                                .cornerRadius(5)
-                                                .padding(0)
-                                        } .padding(0)
-                                    }
-                                    HStack {
-                                        Text(transaction.note)
-                                            .foregroundColor(Color(.gray)).textCase(.uppercase)
-                                            .font(.subheadline).dynamicTypeSize(.small)
-                                        Spacer()
-                                        Text(selectedCategory.type.rawValue)
-                                            .foregroundColor(Color(.gray)).textCase(.uppercase)
-                                            .font(.subheadline).dynamicTypeSize(.small)
-                                    }
-                                }    .padding(.leading, 10)
+                                            if transaction.type == CategoryType.expense {
+                                                Text("-\(transaction.amount.formattedWithSeparatorAndCurrency())")
+                                                    .font(.title3).bold()
+                                            } else {
+                                                Text(transaction.amount.formattedWithSeparatorAndCurrency())
+                                                    .font(.title3).bold()
+                                            }
+                                            Spacer()
+                                            HStack {
+                                                Text(selectedCategory.name)
+                                                    .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
+                                                    .font(.caption)
+                                                    .multilineTextAlignment(.trailing)
+                                                    .dynamicTypeSize(.small)
+                                                    .padding(0)
+                                                Image(systemName: selectedCategory.icon)
+                                                    .font(.caption).dynamicTypeSize(.small)
+                                                    .foregroundColor(.black)
+                                                    .frame(width: 20, height: 20)
+                                                    .background(Color(selectedCategory.color))
+                                                    .cornerRadius(5)
+                                                    .padding(0)
+                                            } .padding(0)
+                                        }
+                                        HStack {
+                                            Text(transaction.note)
+                                                .foregroundColor(Color(.gray)).textCase(.uppercase)
+                                                .font(.subheadline).dynamicTypeSize(.small)
+                                            Spacer()
+                                            Text(selectedCategory.type.rawValue)
+                                                .foregroundColor(Color(.gray)).textCase(.uppercase)
+                                                .font(.subheadline).dynamicTypeSize(.small)
+                                        }
+                                    }    .padding(.leading, 10)
+                                }
                             }
+                            .padding(.vertical, 5)
+                            .frame(height: 50)
                         }
-                        .padding(.vertical, 5)
-                        .frame(height: 50)
+                        .onDelete(perform: deleteTransaction)
                     }
-                    .onDelete(perform: deleteTransaction)
                 }
             }
         }

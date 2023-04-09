@@ -21,6 +21,7 @@
 		08558BA629D394950047F959 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA529D394950047F959 /* ViewModel.swift */; };
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
+		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
@@ -40,6 +41,7 @@
 		08558BA129D388080047F959 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		08558BA329D394840047F959 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		08558BA529D394950047F959 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		086A5A1F29E34B0000D044F7 /* PreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCard.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				08558B9729D35F890047F959 /* BalanceView.swift */,
 				08558B9F29D381F10047F959 /* ColorPicker.swift */,
 				08558BA129D388080047F959 /* IconPicker.swift */,
+				086A5A1F29E34B0000D044F7 /* PreviewCard.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			files = (
 				08558BA629D394950047F959 /* ViewModel.swift in Sources */,
 				08558B9829D35F890047F959 /* BalanceView.swift in Sources */,
+				086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */,
 				08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */,
 				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
 				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
