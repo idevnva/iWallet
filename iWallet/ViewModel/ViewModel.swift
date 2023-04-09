@@ -29,7 +29,6 @@ final class SceneViewModel: ObservableObject {
     }
 }
 
-
 extension SceneViewModel {
     
     // Метод проверки на первый запуск

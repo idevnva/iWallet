@@ -47,7 +47,7 @@ struct HomeView: View {
                         
                         // фильтруем категории по типу
                         var filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
-                      
+                        
                         // сортируем категории по сумме
                         let _: () = filteredCategoriesArray.sort(by: { $0.categoryAmount(type: selectedCategoryType) > $1.categoryAmount(type: selectedCategoryType)})
                         
@@ -109,7 +109,7 @@ struct HomeView: View {
                                             Text(totalAmount.formattedWithSeparatorAndCurrency())
                                                 .font(.headline).bold()
                                                 .foregroundColor(Color("colorBalanceText"))
-                                           
+                                            
                                             Image(systemName: "chevron.forward")
                                                 .foregroundColor(Color("colorBalanceText"))
                                                 .opacity(0.5)
@@ -122,7 +122,7 @@ struct HomeView: View {
                                         Divider()
                                     }
                                 }
-                           }
+                            }
                         }
                     }
                     .cornerRadius(10)
