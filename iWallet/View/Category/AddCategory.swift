@@ -69,7 +69,7 @@ struct AddCategory: View {
                                 .cornerRadius(10)
                                 .padding(.bottom, 15)
                         } header: {
-                            Text("Выберете иконку:")
+                            Text("Выберите иконку:")
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
@@ -81,7 +81,7 @@ struct AddCategory: View {
                                 .cornerRadius(10)
                             
                         } header: {
-                            Text("Выберете цвет:")
+                            Text("Выберите цвет:")
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }

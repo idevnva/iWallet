@@ -16,7 +16,7 @@ func previewCard() -> some View {
             .foregroundColor(.gray)
         Spacer(minLength: 20)
         
-        Text("Список транзакций пока, что пуст,")
+        Text("Список транзакций пока, что пуст")
             .foregroundColor(.gray)
             .font(.system(size: 12))
         Text("пожалуйста добавьте транзакцию.")

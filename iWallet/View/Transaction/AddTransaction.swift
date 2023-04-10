@@ -96,7 +96,7 @@ struct AddTransaction: View {
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
                     } header: {
-                        Text("Выберете дату:")
+                        Text("Выберите дату:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
