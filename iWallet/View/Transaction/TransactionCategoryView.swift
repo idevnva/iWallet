@@ -80,6 +80,8 @@ struct TransactionCategoryView: View {
                 }
             }
         }
+        .background(Color("colorBG"))
+        .scrollContentBackground(.hidden)
     }
     
     // метод фильтрации транзакции с выбранной категорией
