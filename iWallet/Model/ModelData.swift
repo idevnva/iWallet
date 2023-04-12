@@ -28,6 +28,7 @@ enum CategoryType: String, PersistableEnum, CaseIterable {
 }
 
 extension Category {
+    
     // Функция проверяет, есть ли в категории транзакции с выбранным типом (доход или расход)
     func hasTransactions(type: CategoryType) -> Bool {
         for transaction in transactions {
@@ -53,11 +54,15 @@ extension Category {
 extension Float {
     func formattedWithSeparatorAndCurrency() -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "."
-        formatter.groupingSize = 3
-        formatter.maximumFractionDigits = 0
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        formatter.currencySymbol = Locale.current.currencySymbol
+        
+        if Locale.current.currency?.identifier == "RUB" {
+            formatter.currencySymbol = "₽"
+        }
+        
         let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
-        return "\(formattedNumber) ₽"
+        return formattedNumber
     }
 }
