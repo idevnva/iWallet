@@ -54,15 +54,22 @@ extension Category {
 extension Float {
     func formattedWithSeparatorAndCurrency() -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale.current
-        formatter.currencySymbol = Locale.current.currencySymbol
-        
+                formatter.numberStyle = .currency
+                formatter.locale = Locale.current
+                formatter.currencySymbol = Locale.current.currencySymbol
+                formatter.groupingSize = 3
+                formatter.groupingSeparator = "."
+                formatter.maximumFractionDigits = 0
+
         if Locale.current.currency?.identifier == "RUB" {
-            formatter.currencySymbol = "₽"
-        }
-        
-        let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
-        return formattedNumber
+                    formatter.currencySymbol = "₽"
+                }
+
+        if Locale.current.currency?.identifier == "TMT" {
+                    formatter.currencySymbol = "m"
+                }
+
+                let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+                return formattedNumber
     }
 }

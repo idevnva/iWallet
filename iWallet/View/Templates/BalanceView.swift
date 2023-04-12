@@ -23,7 +23,7 @@ struct BalanceView: View {
                         .cornerRadius(7.5)
                     Spacer()
                     Text(amount.formattedWithSeparatorAndCurrency())
-                        .font(.headline).textCase(.uppercase)
+                        .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(amountBG)
                 }
