@@ -22,6 +22,9 @@
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
 		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
+		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
+		0880C67329E8A2A800E088DB /* DefaultCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67229E8A2A800E088DB /* DefaultCategories.swift */; };
+		0880C67529E8AB9200E088DB /* CheckFirstRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
@@ -42,6 +45,10 @@
 		08558BA329D394840047F959 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		08558BA529D394950047F959 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		086A5A1F29E34B0000D044F7 /* PreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCard.swift; sourceTree = "<group>"; };
+		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0880C67229E8A2A800E088DB /* DefaultCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategories.swift; sourceTree = "<group>"; };
+		0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFirstRunView.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
@@ -101,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				08558B8529D35EA40047F959 /* iWalletApp.swift */,
+				0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */,
+				0880C66F29E8682B00E088DB /* Localizable.strings */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -175,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				08558BA529D394950047F959 /* ViewModel.swift */,
+				0880C67229E8A2A800E088DB /* DefaultCategories.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -220,11 +230,12 @@
 			};
 			buildConfigurationList = 08558B7D29D35EA40047F959 /* Build configuration list for PBXProject "iWallet" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ru;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				ru,
+				en,
 			);
 			mainGroup = 08558B7929D35EA40047F959;
 			packageReferences = (
@@ -245,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08558B8D29D35EA40047F959 /* Preview Assets.xcassets in Resources */,
+				0880C66D29E8682B00E088DB /* Localizable.strings in Resources */,
 				08558B8A29D35EA40047F959 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +277,9 @@
 				08558BA429D394840047F959 /* ModelData.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
+				0880C67529E8AB9200E088DB /* CheckFirstRunView.swift in Sources */,
 				08558B8829D35EA40047F959 /* HomeView.swift in Sources */,
+				0880C67329E8A2A800E088DB /* DefaultCategories.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
@@ -274,6 +288,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0880C66F29E8682B00E088DB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0880C66E29E8682B00E088DB /* en */,
+				0880C67129E86A6500E088DB /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		08558B8E29D35EA40047F959 /* Debug */ = {

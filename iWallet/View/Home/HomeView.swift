@@ -10,28 +10,30 @@ struct HomeView: View {
     @State private var showAddTransaction: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
     
+    private let setting: LocalizedStringKey = "Settings"
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         HStack {
-                            BalanceView(amount: viewModel.balance(), type: "Баланс", icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                            BalanceView(amount: viewModel.balance(), type: LocalizedStringKey("Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.averageDailyExpense(), type: "Средний расход", icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                            BalanceView(amount: viewModel.averageDailyExpense(), type: LocalizedStringKey("Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
                         }
                         Spacer(minLength: 10)
                         HStack {
-                            BalanceView(amount: viewModel.totalIncomes(), type: "Доход", icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
+                            BalanceView(amount: viewModel.totalIncomes(), type: LocalizedStringKey("Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.totalExpenses(), type: "Расход", icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                            BalanceView(amount: viewModel.totalExpenses(), type: LocalizedStringKey("Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
                         }
                     }
                     .padding()
                     
                     Picker("Тип", selection: $selectedCategoryType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in
-                            Text(type.rawValue)
+                            Text(type.localizedName)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
@@ -130,9 +132,10 @@ struct HomeView: View {
                         Button {
                             showSettingView.toggle()
                         } label: {
-                            Image(systemName: "gearshape.circle")
-                                .font(.title3)
-                                .foregroundColor(Color("colorBalanceText"))
+//                            Image(systemName: "gearshape.circle")
+//                                .font(.title3)
+//                                .foregroundColor(Color("colorBalanceText"))
+                            Text(setting)
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -144,7 +147,8 @@ struct HomeView: View {
                 }
             }
             .background(Color("colorBG"))
-        } .fullScreenCover(isPresented: $showSettingView) {
+        }
+        .sheet(isPresented: $showSettingView) {
             SettingView()
         }
         .sheet(isPresented: $showAddTransaction) {

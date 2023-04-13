@@ -5,7 +5,7 @@ import SwiftUI
 struct BalanceView: View {
     
     let amount: Float
-    let type: String
+    let type: LocalizedStringKey
     let icon: String
     let viewBG: Color
     let amountBG: Color

@@ -10,13 +10,19 @@ import SwiftUI
 @main
 struct iWalletApp: App {
     @ObservedObject var viewModel = SceneViewModel()
+    @AppStorage("hasRunBefore") private var hasRunBefore = false
     
     var body: some Scene {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         
         WindowGroup {
-            HomeView()
-                .environmentObject(viewModel)
+            if !hasRunBefore {
+                CheckFirstRunView()
+                    .environmentObject(viewModel)
+            } else {
+                HomeView()
+                    .environmentObject(viewModel)
+            }
         }
     }
 }

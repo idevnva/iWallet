@@ -11,6 +11,15 @@ struct AddCategory: View {
     @State private var selectedImage: String = "folder.circle"
     @State private var selectedColor: String = "colorBlue"
     
+    private let selectTypeLocalized: LocalizedStringKey = "Select type:"
+    private let nameLocaLocalized: LocalizedStringKey = "Name"
+    private let enterNameLocalized: LocalizedStringKey = "Enter Name"
+    private let chooseAnIconLocalized: LocalizedStringKey = "Choose an icon:"
+    private let chooseColorLocalized: LocalizedStringKey = "Choose color:"
+    private let createACategoryLocalized: LocalizedStringKey = "Create a category"
+    private let backLocalized: LocalizedStringKey = "Back"
+    private let addLocalized: LocalizedStringKey = "Add"
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -29,11 +38,12 @@ struct AddCategory: View {
                         
                         Section {
                             VStack(alignment: .leading) {
-                                Picker("CategoryType", selection: $selectedType) {
-                                    Text("Расход").tag(CategoryType.expense)
-                                    Text("Доход").tag(CategoryType.income)
+                                Picker("Type", selection: $selectedType) {
+                                    ForEach(CategoryType.allCases, id: \.self) { type in
+                                        Text(type.localizedName)
+                                    }
                                 }
-                                .pickerStyle(SegmentedPickerStyle())
+                                .pickerStyle(.segmented)
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
@@ -41,14 +51,14 @@ struct AddCategory: View {
                                 .padding(.bottom, 15)
                             }
                         } header: {
-                            Text("Введите тип:")
+                            Text(selectTypeLocalized)
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
                         
                         Section {
                             VStack(alignment: .leading) {
-                                TextField("Название", text: $name)
+                                TextField(nameLocaLocalized, text: $name)
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .background(Color("colorBalanceBG"))
@@ -56,7 +66,7 @@ struct AddCategory: View {
                                     .padding(.bottom, 15)
                             }
                         } header: {
-                            Text("Введите название:")
+                            Text(enterNameLocalized)
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
@@ -69,7 +79,7 @@ struct AddCategory: View {
                                 .cornerRadius(10)
                                 .padding(.bottom, 15)
                         } header: {
-                            Text("Выберите иконку:")
+                            Text(chooseAnIconLocalized)
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
@@ -81,7 +91,7 @@ struct AddCategory: View {
                                 .cornerRadius(10)
                             
                         } header: {
-                            Text("Выберите цвет:")
+                            Text(chooseColorLocalized)
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
@@ -91,15 +101,13 @@ struct AddCategory: View {
                 }
             }
             .background(Color("colorBG"))
-            .navigationBarTitle("Создание категории", displayMode: .inline)
+            .navigationBarTitle(createACategoryLocalized, displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(backLocalized)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -107,9 +115,7 @@ struct AddCategory: View {
                         viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                         dismiss()
                     } label: {
-                        Image(systemName: "checkmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(addLocalized)
                     }
                 }
             }

@@ -13,7 +13,20 @@ struct AddTransaction: View {
     @State var date: Date = Date()
     @State var note: String = ""
     @State var selectedType: CategoryType = .expense
-    @State var showCategoryPicker: Bool = false
+    @State var alertAmount: Bool = false
+    
+    private let enterAmountLocalized: LocalizedStringKey = "Enter amount:"
+    private let noteLocalized: LocalizedStringKey = "Note"
+    private let enterNoteLocalized: LocalizedStringKey = "Enter note:"
+    private let categoryTypeLocalized: LocalizedStringKey = "Category type"
+    private let categoryLocalized: LocalizedStringKey = "Category"
+    private let purposeLocalized: LocalizedStringKey = "Purpose:"
+    private let dateLocalized: LocalizedStringKey = "Date"
+    private let enterDateLocalized: LocalizedStringKey = "Enter date:"
+    private let cancelLocalized: LocalizedStringKey = "Cancel"
+    private let addLocalized: LocalizedStringKey = "Add"
+    private let pleaseEnterAmountLocalized: LocalizedStringKey = "Please enter amount"
+    private let okayLocalized: LocalizedStringKey = "Okay"
     
     var body: some View {
         NavigationStack {
@@ -28,28 +41,28 @@ struct AddTransaction: View {
                             .cornerRadius(10)
                             .padding(.bottom, 15)
                     } header: {
-                        Text("Введите сумму:")
+                        Text(enterAmountLocalized)
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
                     
                     Section {
-                        TextField("Заметка", text: $note)
+                        TextField(noteLocalized, text: $note)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color("colorBalanceBG"))
                             .cornerRadius(10)
                             .padding(.bottom, 15)
                     } header: {
-                        Text("Введите заметку:")
+                        Text(enterNoteLocalized)
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
                     
                     Section {
-                        Picker("Тип категории", selection: $selectedType) {
+                        Picker(categoryTypeLocalized, selection: $selectedType) {
                             ForEach(CategoryType.allCases, id: \.self) { type in
-                                Text(type.rawValue)
+                                Text(type.localizedName)
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -59,7 +72,7 @@ struct AddTransaction: View {
                         .cornerRadius(10)
                         
                         HStack {
-                            Picker("Категория", selection: $selectedCategory) {
+                            Picker(categoryLocalized, selection: $selectedCategory) {
                                 ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
                                     HStack {
                                         Image(systemName: category.icon)
@@ -81,14 +94,13 @@ struct AddTransaction: View {
                             .padding(.bottom, 15)
                         }
                     } header: {
-                        Text("Назначение:")
+                        Text(purposeLocalized)
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
-                    
                     Section {
                         HStack {
-                            DatePicker("Дата", selection: $date, displayedComponents: .date)
+                            DatePicker(dateLocalized, selection: $date, displayedComponents: .date)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding()
@@ -96,7 +108,7 @@ struct AddTransaction: View {
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
                     } header: {
-                        Text("Выберите дату:")
+                        Text(enterDateLocalized)
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
@@ -106,25 +118,29 @@ struct AddTransaction: View {
                 
             }
             .background(Color("colorBG"))
-            .navigationBarTitle("Добавление транзакции", displayMode: .inline)
+            .navigationBarTitle("", displayMode: .inline)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(cancelLocalized)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
-                        dismiss()
+                        if amount.isEmpty {
+                            alertAmount = true
+                        } else {
+                            viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                            dismiss()
+                        }
                     } label: {
-                        Image(systemName: "checkmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(addLocalized)
+                    }
+                    .alert(pleaseEnterAmountLocalized, isPresented: $alertAmount) {
+                        Button(okayLocalized, role: .cancel) { }
                     }
                 }
             }

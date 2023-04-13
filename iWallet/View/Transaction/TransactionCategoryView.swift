@@ -63,7 +63,7 @@ struct TransactionCategoryView: View {
                                                 .foregroundColor(Color(.gray)).textCase(.uppercase)
                                                 .font(.subheadline).dynamicTypeSize(.small)
                                             Spacer()
-                                            Text(selectedCategory.type.rawValue)
+                                            Text(selectedCategory.type.localizedName)
                                                 .foregroundColor(Color(.gray)).textCase(.uppercase)
                                                 .font(.subheadline).dynamicTypeSize(.small)
                                         }
@@ -82,6 +82,15 @@ struct TransactionCategoryView: View {
         }
         .background(Color("colorBG"))
         .scrollContentBackground(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if transactions.isEmpty {
+                    EditButton().disabled(true)
+                } else {
+                    EditButton()
+                }
+            }
+        }
     }
     
     // метод фильтрации транзакции с выбранной категорией

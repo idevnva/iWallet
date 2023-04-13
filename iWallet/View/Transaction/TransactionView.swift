@@ -9,6 +9,9 @@ struct TransactionView: View {
     @ObservedResults(TransactionItem.self) var transactions
     @ObservedResults(Category.self) var categories
     
+    private let transactionsLocalized: LocalizedStringKey = "Transactions"
+    private let backLocalized: LocalizedStringKey = "Back"
+    
     var body: some View {
         NavigationStack {
             List {
@@ -33,15 +36,21 @@ struct TransactionView: View {
                     }
                 }
             }
-            .navigationBarTitle("Транзакции", displayMode: .inline)
+            .navigationBarTitle(transactionsLocalized, displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(backLocalized)
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if transactions.isEmpty {
+                        EditButton().disabled(true)
+                    } else {
+                        EditButton()
                     }
                 }
             }

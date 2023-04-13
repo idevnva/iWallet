@@ -23,8 +23,17 @@ class TransactionItem: Object, ObjectKeyIdentifiable {
 }
 
 enum CategoryType: String, PersistableEnum, CaseIterable {
-    case expense = "Расход"
-    case income = "Доход"
+    case expense = "Expense"
+    case income = "Income"
+    
+    var localizedName: String {
+           switch self {
+           case .expense:
+               return NSLocalizedString("Expense", comment: "Expense category")
+           case .income:
+               return NSLocalizedString("Income", comment: "Income category")
+           }
+       }
 }
 
 extension Category {

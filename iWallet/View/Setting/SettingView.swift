@@ -9,6 +9,16 @@ struct SettingView: View {
     @State var showCategory: Bool = false
     @State var showTransactionView: Bool = false
     
+    private let backLocalized: LocalizedStringKey = "Back"
+    private let settingLocalized: LocalizedStringKey = "Settings"
+    private let ransactionsLocalized: LocalizedStringKey = "Transactions"
+    private let categoriesLocalized: LocalizedStringKey = "Categories"
+    private let dataLocalized: LocalizedStringKey = "Data"
+    private let webSiteLocalized: LocalizedStringKey = "Web-site"
+    private let communityLocalized: LocalizedStringKey = "Community"
+    private let writeToTheDeveloperLocalized: LocalizedStringKey = "Write to the developer"
+    private let feedbackLocalized: LocalizedStringKey = "Feedback"
+    
     var body: some View {
         NavigationStack {
             List {
@@ -22,7 +32,7 @@ struct SettingView: View {
                                 .frame(width: 30, height: 30)
                                 .background(Color("colorYellow"))
                                 .cornerRadius(7.5)
-                            Text("Транзакции")
+                            Text(ransactionsLocalized)
                                 .foregroundColor(Color("colorBalanceText"))
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -40,7 +50,7 @@ struct SettingView: View {
                                 .frame(width: 30, height: 30)
                                 .background(Color("colorBlue"))
                                 .cornerRadius(7.5)
-                            Text("Категории")
+                            Text(categoriesLocalized)
                                 .foregroundColor(Color("colorBalanceText"))
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -49,7 +59,7 @@ struct SettingView: View {
                         }
                     }
                 } header: {
-                    Text("Данные")
+                    Text(dataLocalized)
                 }
                 
                 Section {
@@ -63,7 +73,7 @@ struct SettingView: View {
                                 .frame(width: 30, height: 30)
                                 .background(Color("colorRed"))
                                 .cornerRadius(7.5)
-                            Text("Веб сайт")
+                            Text(webSiteLocalized)
                                 .foregroundColor(Color("colorBalanceText"))
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -81,7 +91,7 @@ struct SettingView: View {
                                 .frame(width: 30, height: 30)
                                 .background(Color("colorGreen"))
                                 .cornerRadius(7.5)
-                            Text("Сообщество")
+                            Text(communityLocalized)
                                 .foregroundColor(Color("colorBalanceText"))
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -99,7 +109,7 @@ struct SettingView: View {
                                 .frame(width: 30, height: 30)
                                 .background(Color("colorGray1"))
                                 .cornerRadius(7.5)
-                            Text("Написать разработчику")
+                            Text(writeToTheDeveloperLocalized)
                                 .foregroundColor(Color("colorBalanceText"))
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -109,26 +119,19 @@ struct SettingView: View {
                     }
                     
                 } header: {
-                    Text("Обратная связь")
+                    Text(feedbackLocalized)
                 }
             }
             .background(Color("colorBG"))
             .scrollContentBackground(.hidden)
+            .navigationTitle(settingLocalized)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(backLocalized)
                     }
-                }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Настройки")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("colorBalanceText"))
                 }
             }
         }

@@ -11,6 +11,12 @@ struct CategoryView: View {
     @State var selectedType: CategoryType = .expense
     @State var showAddCategory: Bool = false
     
+    private let welcomeLocalized: LocalizedStringKey = "Welcome"
+    private let listLocalized: LocalizedStringKey = "The list of categories is currently empty,"
+    private let pleaseLocalized: LocalizedStringKey = "please add category."
+    private let backLocalized: LocalizedStringKey = "Back"
+    private let newLocalized: LocalizedStringKey = "New"
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -25,14 +31,14 @@ struct CategoryView: View {
                             Text("iWallet")
                                 .foregroundColor(.gray).bold()
                                 .font(.title)
-                            Text("Добро пожаловать!")
+                            Text(welcomeLocalized)
                                 .foregroundColor(.gray)
                             Spacer(minLength: 20)
                             
-                            Text("Список категорий пока, что пуст,")
+                            Text(listLocalized)
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
-                            Text("пожалуйста добавьте категорию.")
+                            Text(pleaseLocalized)
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
                             Spacer(minLength: 20)
@@ -61,24 +67,20 @@ struct CategoryView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(backLocalized)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showAddCategory.toggle()
                     } label: {
-                        Image(systemName: "square.and.pencil.circle")
-                            .font(.title3)
-                            .foregroundColor(Color("colorBalanceText"))
+                        Text(newLocalized)
                     }
                 }
                 ToolbarItem(placement: .principal) {
                     Picker("Type", selection: $selectedType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in
-                            Text(type.rawValue).tag(type)
+                            Text(type.localizedName)
                         }
                     } .pickerStyle(.segmented)
                 }

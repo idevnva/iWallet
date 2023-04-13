@@ -1,0 +1,65 @@
+/* 
+  Localizable.strings
+  iWallet
+
+  Created by Владислав Новошинский on 13.04.2023.
+  
+*/
+
+// HomeView
+"Balance" = "Balance";
+"Expense average" = "Expense average";
+"Income" = "Income";
+"Expense" = "Expense";
+"Settings" = "Settings";
+
+// AddTransaction
+"Enter amount:" = "Enter amount:";
+"Note" = "Note";
+"Enter note:" = "Enter note:";
+"Category type" = "Category type";
+"Category" = "Category";
+"Purpose:" = "Purpose:";
+"Date" = "Date";
+"Enter date:" = "Enter date:";
+"Cancel" = "Cancel";
+"Add" = "Add";
+"Please enter amount" = "Please enter amount";
+"Okay" = "Okay";
+
+// TransactionView
+"Transactions" = "Transactions";
+"Back" = "Back";
+
+// AddCategoryView
+"Welcome" = "Welcome";
+"The list of categories is currently empty," = "The list of categories is currently empty,";
+"please add category." = "please add category.";
+"Back" = "Back";
+"New" = "New";
+
+// AddCategory
+"Select type:" = "Select type:";
+"Name" = "Name";
+"Enter Name" = "Enter Name";
+"Choose an icon:" = "Choose an icon:";
+"Choose color:" = "Choose color:";
+"Create a category" = "Create a category";
+"Back" = "Back";
+"Add" = "Add";
+
+// SettingView
+"Back" = "Back";
+"Settings" = "Settings";
+"Transactions" = "Transactions";
+"Categories" = "Categories";
+"Data" = "Data";
+"Web-site" = "Web-site";
+"Community" = "Community";
+"Write to the developer" = "Write to the developer";
+"Feedback" = "Feedback";
+
+//PreviewCard
+"Welcome" = "Welcome!";
+"The list of transactions is currently empty," = "The list of transactions is currently empty,";
+"please add transaction." = "please add transaction.";
