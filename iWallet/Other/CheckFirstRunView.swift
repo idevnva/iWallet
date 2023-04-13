@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealmSwift
+//
 
 struct CheckFirstRunView: View {
     @EnvironmentObject var viewModel: SceneViewModel
