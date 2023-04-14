@@ -75,7 +75,7 @@ struct SettingView: View {
                 
                 Section {
                     Button {
-                        openURL(URL(string: "https://idevnva.com/")!)
+                        openURL(URL(string: NSLocalizedString("https://idevnva.com/", comment: "https://idevnva.com/"))!)
                     } label: {
                         HStack {
                             Image(systemName: "network")
@@ -93,7 +93,7 @@ struct SettingView: View {
                     }
                     
                     Button {
-                        openURL(URL(string: "https://t.me/iwalletapp")!)
+                        openURL(URL(string: NSLocalizedString("https://t.me/iwalletapp", comment: "https://t.me/iwalletapp"))!)
                     } label: {
                         HStack {
                             Image(systemName: "person.2.circle")
@@ -111,7 +111,7 @@ struct SettingView: View {
                     }
                     
                     Button {
-                        openURL(URL(string: "https://t.me/idevnva")!)
+                        openURL(URL(string: NSLocalizedString("https://t.me/idevnva", comment: "https://t.me/idevnva"))!)
                     } label: {
                         HStack {
                             Image(systemName: "envelope.circle")
