@@ -24,7 +24,7 @@
 		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67329E8A2A800E088DB /* DefaultCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67229E8A2A800E088DB /* DefaultCategories.swift */; };
-		0880C67529E8AB9200E088DB /* CheckFirstRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */; };
+		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
@@ -48,7 +48,7 @@
 		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67229E8A2A800E088DB /* DefaultCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategories.swift; sourceTree = "<group>"; };
-		0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFirstRunView.swift; sourceTree = "<group>"; };
+		0880C67429E8AB9200E088DB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
@@ -108,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				08558B8529D35EA40047F959 /* iWalletApp.swift */,
-				0880C67429E8AB9200E088DB /* CheckFirstRunView.swift */,
 				0880C66F29E8682B00E088DB /* Localizable.strings */,
 			);
 			path = Other;
@@ -167,6 +166,7 @@
 		08D1C19B29E0A3C000B58CDE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0880C67429E8AB9200E088DB /* WelcomeView.swift */,
 				08558B8729D35EA40047F959 /* HomeView.swift */,
 			);
 			path = Home;
@@ -277,7 +277,7 @@
 				08558BA429D394840047F959 /* ModelData.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
-				0880C67529E8AB9200E088DB /* CheckFirstRunView.swift in Sources */,
+				0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */,
 				08558B8829D35EA40047F959 /* HomeView.swift in Sources */,
 				0880C67329E8A2A800E088DB /* DefaultCategories.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
@@ -422,7 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -438,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -456,7 +456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -472,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -58,6 +58,8 @@
 "Community" = "Сообщество";
 "Write to the developer" = "Написать разработчику";
 "Feedback" = "Обратная звязь";
+"Application" = "Приложение";
+"Currency" = "Валюта";
 
 //PreviewCard
 "Welcome" = "Добро пожаловать!";
@@ -95,5 +97,10 @@
 "Part time job" = "Подработка";
 "Interest on accounts" = "Проценты по счетам";
 
-// CheckFirstRunView
-"Welcome to the iWallet!" = "Добро пожаловать в iWallet";
+// WelcomeView
+"Welcome to the iWallet!" = "Добро пожаловать в iWallet!";
+"Currency" = "Валюта";
+"Initial application setup" = "Первоначальная настройка приложения:";
+"Basic categories" = "Базовые категории";
+"Note: Enabling this feature will create base categories for expenses and income." = "Примечание. При включении этой функции будут созданы базовые категории расходов и доходов.";
+"Continue" = "Продолжить";

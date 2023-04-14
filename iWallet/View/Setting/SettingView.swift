@@ -3,9 +3,14 @@
 import SwiftUI
 
 struct SettingView: View {
+    @EnvironmentObject var viewModel: SceneViewModel
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.openURL) var openURL
     
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    
+    @State private var selectedCurrency: Currency = .usd
     @State var showCategory: Bool = false
     @State var showTransactionView: Bool = false
     
@@ -52,8 +57,23 @@ struct SettingView: View {
                     Text("Data")
                 }
                 
+                Section(header: Text("Application")) {
+                    HStack {
+                        Text(selectedCurrency.symbol) // Используйте selectedCurrency.symbol
+                            .foregroundColor(Color("colorBlack"))
+                            .frame(width: 30, height: 30)
+                            .background(Color("colorBrown1"))
+                            .cornerRadius(7.5)
+                        Picker("Currency", selection: $selectedCurrency) {
+                            ForEach(Currency.sortedCases, id: \.self) { currency in
+                                Text(currency.rawValue)
+                                    .tag(currency)
+                            }
+                        }
+                    }
+                }
+                
                 Section {
-                    
                     Button {
                         openURL(URL(string: "https://idevnva.com/")!)
                     } label: {
@@ -107,14 +127,23 @@ struct SettingView: View {
                                 .opacity(0.5)
                         }
                     }
-                    
                 } header: {
                     Text("Feedback")
                 }
             }
-            .background(Color("colorBG"))
             .scrollContentBackground(.hidden)
+            .background(Color("colorBG"))
             .navigationTitle("Settings")
+            .onAppear {
+                // Устанавливаем selectedCurrency на основе сохраненного символа валюты
+                if let currency = Currency.allCases.first(where: { $0.symbol == currencySymbol }) {
+                    selectedCurrency = currency
+                }
+            }
+            .onChange(of: selectedCurrency) { newCurrency in
+                // Сохраняем символ валюты при изменении выбора
+                currencySymbol = newCurrency.symbol
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {

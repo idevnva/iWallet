@@ -36,8 +36,8 @@ struct CategoryView: View {
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
                             Spacer(minLength: 20)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: 300)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: 300)
                     } else {
                         ForEach(filteredCategories(), id: \.self) { category in
                             HStack {
@@ -53,8 +53,8 @@ struct CategoryView: View {
                         } .onDelete(perform: deleteCategory)
                     }
                 }
-                .background(Color("colorBG"))
                 .scrollContentBackground(.hidden)
+                .background(Color("colorBG"))
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -74,7 +74,7 @@ struct CategoryView: View {
                 ToolbarItem(placement: .principal) {
                     Picker("Type", selection: $selectedType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in
-                            Text(type.localizedName)
+                            Text(type.localizedName())
                         }
                     } .pickerStyle(.segmented)
                 }

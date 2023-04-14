@@ -6,7 +6,9 @@ import RealmSwift
 struct TransactionCategoryView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(TransactionItem.self) var transactions
+    
     @Binding var selectedCategory: Category
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
     
     var filteredTransactions: [TransactionItem] {
         filterTransaction(category: selectedCategory, transactions: Array(transactions))
@@ -35,10 +37,10 @@ struct TransactionCategoryView: View {
                                     VStack(alignment: .leading) {
                                         HStack {
                                             if transaction.type == CategoryType.expense {
-                                                Text("-\(transaction.amount.formattedWithSeparatorAndCurrency())")
+                                                Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
                                                     .font(.title3).bold()
                                             } else {
-                                                Text(transaction.amount.formattedWithSeparatorAndCurrency())
+                                                Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
                                                     .font(.title3).bold()
                                             }
                                             Spacer()
@@ -63,7 +65,7 @@ struct TransactionCategoryView: View {
                                                 .foregroundColor(Color(.gray)).textCase(.uppercase)
                                                 .font(.subheadline).dynamicTypeSize(.small)
                                             Spacer()
-                                            Text(selectedCategory.type.localizedName)
+                                            Text(selectedCategory.type.localizedName())
                                                 .foregroundColor(Color(.gray)).textCase(.uppercase)
                                                 .font(.subheadline).dynamicTypeSize(.small)
                                         }

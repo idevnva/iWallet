@@ -26,14 +26,9 @@ enum CategoryType: String, PersistableEnum, CaseIterable {
     case expense = "Expense"
     case income = "Income"
     
-    var localizedName: String {
-           switch self {
-           case .expense:
-               return NSLocalizedString("Expense", comment: "Expense category")
-           case .income:
-               return NSLocalizedString("Income", comment: "Income category")
-           }
-       }
+    func localizedName() -> String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 extension Category {
@@ -60,25 +55,62 @@ extension Category {
     }
 }
 
+// метод возвращает сумму с точками после каждых трех символов
 extension Float {
     func formattedWithSeparatorAndCurrency() -> String {
         let formatter = NumberFormatter()
-                formatter.numberStyle = .currency
-                formatter.locale = Locale.current
-                formatter.currencySymbol = Locale.current.currencySymbol
-                formatter.groupingSize = 3
-                formatter.groupingSeparator = "."
-                formatter.maximumFractionDigits = 0
+        formatter.numberStyle = .decimal
+        formatter.groupingSize = 3
+        formatter.groupingSeparator = "."
+        formatter.maximumFractionDigits = 0
+        
+        let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
+        return formattedNumber
+    }
+}
 
-        if Locale.current.currency?.identifier == "RUB" {
-                    formatter.currencySymbol = "₽"
-                }
-
-        if Locale.current.currency?.identifier == "TMT" {
-                    formatter.currencySymbol = "m"
-                }
-
-                let formattedNumber = formatter.string(from: NSNumber(value: self)) ?? "\(self)"
-                return formattedNumber
+enum Currency: String, CaseIterable, Identifiable, Hashable {
+    case usd = "USD"
+    case eur = "EUR"
+    case rub = "RUB"
+    case tmt = "TMT"
+    case byn = "BYN"
+    case TRY = "TRY"
+    case kzt = "KZT"
+    case uah = "UAH"
+    case cny = "CNY"
+    case gbp = "GBP"
+    
+    var id: String {
+        return self.rawValue
+    }
+    
+    var symbol: String {
+        switch self {
+        case .usd:
+            return "$"
+        case .eur:
+            return "€"
+        case .rub:
+            return "₽"
+        case .tmt:
+            return "m"
+        case .byn:
+            return "Br"
+        case .TRY:
+            return "₺"
+        case .kzt:
+            return "₸"
+        case .uah:
+            return "₴"
+        case .cny:
+            return "¥"
+        case .gbp:
+            return "£"
+        }
+    }
+    
+    static var sortedCases: [Currency] {
+        return Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue })
     }
 }

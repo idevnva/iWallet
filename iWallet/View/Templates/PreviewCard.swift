@@ -4,7 +4,6 @@ import SwiftUI
 
 func previewCard() -> some View {
     VStack {
-        
         VStack(alignment: .center) {
             Spacer(minLength: 20)
             Image("icon")

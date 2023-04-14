@@ -8,6 +8,8 @@ struct AddTransaction: View {
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
     
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    
     @State var selectedCategory: Category
     @State var amount: String = ""
     @State var date: Date = Date()
@@ -15,54 +17,51 @@ struct AddTransaction: View {
     @State var selectedType: CategoryType = .expense
     @State var alertAmount: Bool = false
     
-    private let enterAmountLocalized: LocalizedStringKey = "Enter amount:"
-    private let noteLocalized: LocalizedStringKey = "Note"
-    private let enterNoteLocalized: LocalizedStringKey = "Enter note:"
-    private let categoryTypeLocalized: LocalizedStringKey = "Category type"
-    private let categoryLocalized: LocalizedStringKey = "Category"
-    private let purposeLocalized: LocalizedStringKey = "Purpose:"
-    private let dateLocalized: LocalizedStringKey = "Date"
-    private let enterDateLocalized: LocalizedStringKey = "Enter date:"
-    private let cancelLocalized: LocalizedStringKey = "Cancel"
-    private let addLocalized: LocalizedStringKey = "Add"
-    private let pleaseEnterAmountLocalized: LocalizedStringKey = "Please enter amount"
-    private let okayLocalized: LocalizedStringKey = "Okay"
-    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Section {
-                        TextField("100", text: $amount)
-                            .keyboardType(.decimalPad)
+                        if selectedType == .expense {
+                            TextField("-100 \(currencySymbol)", text: $amount)
+                                .keyboardType(.decimalPad)
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("colorBalanceBG"))
+                                .cornerRadius(10)
+                                .padding(.bottom, 15)
+                        } else {
+                            TextField("+100 \(currencySymbol)", text: $amount)
+                                .keyboardType(.decimalPad)
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("colorBalanceBG"))
+                                .cornerRadius(10)
+                                .padding(.bottom, 15)
+                        }
+                    } header: {
+                        Text("Enter amount:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    
+                    Section {
+                        TextField("Note", text: $note)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color("colorBalanceBG"))
                             .cornerRadius(10)
                             .padding(.bottom, 15)
                     } header: {
-                        Text(enterAmountLocalized)
+                        Text("Enter note:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
                     
                     Section {
-                        TextField(noteLocalized, text: $note)
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color("colorBalanceBG"))
-                            .cornerRadius(10)
-                            .padding(.bottom, 15)
-                    } header: {
-                        Text(enterNoteLocalized)
-                            .font(.caption).textCase(.uppercase)
-                            .padding(.leading, 10)
-                    }
-                    
-                    Section {
-                        Picker(categoryTypeLocalized, selection: $selectedType) {
+                        Picker("Category type", selection: $selectedType) {
                             ForEach(CategoryType.allCases, id: \.self) { type in
-                                Text(type.localizedName)
+                                Text(type.localizedName())
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -72,7 +71,7 @@ struct AddTransaction: View {
                         .cornerRadius(10)
                         
                         HStack {
-                            Picker(categoryLocalized, selection: $selectedCategory) {
+                            Picker("Category", selection: $selectedCategory) {
                                 ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
                                     HStack {
                                         Image(systemName: category.icon)
@@ -94,13 +93,13 @@ struct AddTransaction: View {
                             .padding(.bottom, 15)
                         }
                     } header: {
-                        Text(purposeLocalized)
+                        Text("Purpose:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
                     Section {
                         HStack {
-                            DatePicker(dateLocalized, selection: $date, displayedComponents: .date)
+                            DatePicker("Date", selection: $date, displayedComponents: .date)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding()
@@ -108,7 +107,7 @@ struct AddTransaction: View {
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
                     } header: {
-                        Text(enterDateLocalized)
+                        Text("Enter date:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
@@ -125,7 +124,7 @@ struct AddTransaction: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text(cancelLocalized)
+                        Text("Cancel")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -137,10 +136,10 @@ struct AddTransaction: View {
                             dismiss()
                         }
                     } label: {
-                        Text(addLocalized)
+                        Text("Add")
                     }
-                    .alert(pleaseEnterAmountLocalized, isPresented: $alertAmount) {
-                        Button(okayLocalized, role: .cancel) { }
+                    .alert("Please enter amount", isPresented: $alertAmount) {
+                        Button("Okay", role: .cancel) { }
                     }
                 }
             }

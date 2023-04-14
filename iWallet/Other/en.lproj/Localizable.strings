@@ -58,6 +58,8 @@
 "Community" = "Community";
 "Write to the developer" = "Write to the developer";
 "Feedback" = "Feedback";
+"Application" = "Application";
+"Currency" = "Currency";
 
 //PreviewCard
 "Welcome" = "Welcome!";
@@ -95,5 +97,10 @@
 "Part time job" = "Part time job";
 "Interest on accounts" = "Interest on accounts";
 
-// CheckFirstRunView
+// WelcomeView
 "Welcome to the iWallet!" = "Welcome to the iWallet!";
+"Currency" = "Currency";
+"Initial application setup" = "Initial application setup:";
+"Basic categories" = "Basic categories";
+"Note: Enabling this feature will create base categories for expenses and income." = "Note: Enabling this feature will create base categories for expenses and income.";
+"Continue" = "Continue";

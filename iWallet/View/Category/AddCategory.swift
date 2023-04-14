@@ -31,7 +31,7 @@ struct AddCategory: View {
                             VStack(alignment: .leading) {
                                 Picker("Type", selection: $selectedType) {
                                     ForEach(CategoryType.allCases, id: \.self) { type in
-                                        Text(type.localizedName)
+                                        Text(type.localizedName())
                                     }
                                 }
                                 .pickerStyle(.segmented)

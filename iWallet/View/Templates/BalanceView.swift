@@ -4,8 +4,11 @@ import SwiftUI
 
 struct BalanceView: View {
     
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    
     let amount: Float
-    let type: LocalizedStringKey
+    let curren: String
+    let type: String
     let icon: String
     let viewBG: Color
     let amountBG: Color
@@ -22,12 +25,12 @@ struct BalanceView: View {
                         .background(iconBG)
                         .cornerRadius(7.5)
                     Spacer()
-                    Text(amount.formattedWithSeparatorAndCurrency())
+                    Text("\(amount.formattedWithSeparatorAndCurrency()) \(curren)")
                         .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(amountBG)
                 }
-               
+                
                 HStack {
                     Text(type)
                         .foregroundColor(typeBG).textCase(.uppercase)
@@ -45,6 +48,6 @@ struct BalanceView: View {
 
 struct BalanceView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceView(amount: 1000, type: "Income", icon: "plus", viewBG: .white, amountBG: .black, typeBG: .gray, iconBG: .blue)
+        BalanceView(amount: 1000, curren: "$", type: "Income", icon: "plus", viewBG: .white, amountBG: .black, typeBG: .gray, iconBG: .blue)
     }
 }

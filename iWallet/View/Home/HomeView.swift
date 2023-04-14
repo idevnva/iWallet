@@ -1,11 +1,14 @@
 //  ContentView.swift
-//
+
 import SwiftUI
 import RealmSwift
 
 struct HomeView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @ObservedResults(Category.self) var categories
+    
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    
     @State private var showSettingView: Bool = false
     @State private var showAddTransaction: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
@@ -16,22 +19,22 @@ struct HomeView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         HStack {
-                            BalanceView(amount: viewModel.balance(), type: "Balance", icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                            BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.averageDailyExpense(), type: "Expense average", icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                            BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
                         }
                         Spacer(minLength: 10)
                         HStack {
-                            BalanceView(amount: viewModel.totalIncomes(), type: "Income", icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
+                            BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.totalExpenses(), type: "Expense", icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                            BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
                         }
                     }
                     .padding()
                     
                     Picker("Тип", selection: $selectedCategoryType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in
-                            Text(type.localizedName)
+                            Text(type.localizedName())
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
@@ -86,7 +89,7 @@ struct HomeView: View {
                                             
                                             Spacer()
                                             
-                                            Text(totalAmount.formattedWithSeparatorAndCurrency())
+                                            Text("\(totalAmount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
                                                 .font(.headline).bold()
                                                 .foregroundColor(Color("colorBalanceText"))
                                             

@@ -8,21 +8,37 @@ final class SceneViewModel: ObservableObject {
     @Published var transactions: [TransactionItem] = []
     
     init() {
-        let config = Realm.Configuration(schemaVersion: 13)
+        let config = Realm.Configuration(schemaVersion: 15)
         Realm.Configuration.defaultConfiguration = config
         loadData()
     }
     
+    func clearDatabase() {
+        guard let realm = try? Realm() else {
+            print("Ошибка: clearDatabase")
+            return
+        }
+        
+        do {
+            try realm.write {
+                realm.deleteAll()
+                loadData()
+            }
+        } catch {
+            print("Ошибка при удалении данных: \(error.localizedDescription)")
+        }
+    }
+    
     // Метод для загрузки базы
-   private func loadData() {
+    private func loadData() {
         guard let realm = try? Realm() else {
             print("Ошибка: loadData")
             return
         }
-
+        
         let categoriesResult = realm.objects(Category.self)
         let transactionsResult = realm.objects(TransactionItem.self)
-
+        
         categories = Array(categoriesResult)
         transactions = Array(transactionsResult)
     }
@@ -31,7 +47,7 @@ final class SceneViewModel: ObservableObject {
 extension SceneViewModel {
     
     // Добавления категорий по умолчанию
-     func createDefaultCategories() {
+    func createDefaultCategories() {
         guard let realm = try? Realm() else {
             print("Ошибка: Не удалось создать категории по умолчанию Realm")
             return
@@ -45,7 +61,7 @@ extension SceneViewModel {
             }
         }
     }
-     
+    
     // Метод сохранения категории
     func saveCategory(name: String, icon: String, color: String, type: CategoryType) {
         guard let realm = try? Realm() else {
@@ -104,7 +120,7 @@ extension SceneViewModel {
                     for transaction in category.transactions {
                         realm.delete(transaction)
                     }
-
+                    
                     // Удаление категории
                     realm.delete(category)
                 }
@@ -114,29 +130,29 @@ extension SceneViewModel {
             print("Error deleting category: \(error)")
         }
     }
-
+    
     // Метод для удаления транзакций
     func deleteTransaction(withId id: ObjectId) {
-            do {
-                let realm = try Realm()
-
-                if let transaction = realm.object(ofType: TransactionItem.self, forPrimaryKey: id) {
-                    try realm.write {
-                        if let category = transaction.category.first {
-                            if let index = category.transactions.firstIndex(of: transaction) {
-                                category.transactions.remove(at: index)
-                            }
+        do {
+            let realm = try Realm()
+            
+            if let transaction = realm.object(ofType: TransactionItem.self, forPrimaryKey: id) {
+                try realm.write {
+                    if let category = transaction.category.first {
+                        if let index = category.transactions.firstIndex(of: transaction) {
+                            category.transactions.remove(at: index)
                         }
-                        realm.delete(transaction)
                     }
-                    loadData()
-                } else {
-                    print("Транзакция с ID \(id) не найдена")
+                    realm.delete(transaction)
                 }
-            } catch let error {
-                print("Ошибка удаления транзакции: \(error)")
+                loadData()
+            } else {
+                print("Транзакция с ID \(id) не найдена")
             }
+        } catch let error {
+            print("Ошибка удаления транзакции: \(error)")
         }
+    }
     
     // Считает расход
     func totalExpenses() -> Float {
@@ -172,37 +188,39 @@ extension SceneViewModel {
               let latestTransaction = transactions.max(by: { $0.date < $1.date }) else {
             return 0
         }
-
+        
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: earliestTransaction.date, to: latestTransaction.date)
         guard let days = components.day, days > 0 else {
             return 0
         }
-
+        
         let totalAmount = transactions.reduce(0) { (result, transaction) -> Float in
             return result + transaction.amount
         }
-
+        
         return totalAmount / Float(days)
     }
     
     // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
     func averageDailyExpense() -> Float {
         let expenseTransactions = transactions.filter { $0.type == .expense }
-          guard !expenseTransactions.isEmpty else {
-              return 0
-          }
-
-          let uniqueExpenseDates = Set(expenseTransactions.map { transaction -> Date in
-              let calendar = Calendar.current
-              let components = calendar.dateComponents([.year, .month, .day], from: transaction.date)
-              return calendar.date(from: components) ?? transaction.date
-          })
-
-          let daysWithTransactions = uniqueExpenseDates.count
-          
-          let totalExpenseAmount = totalExpenses()
-
-          return totalExpenseAmount / Float(daysWithTransactions)
-      }
+        guard !expenseTransactions.isEmpty else {
+            return 0
+        }
+        
+        let uniqueExpenseDates = Set(expenseTransactions.map { transaction -> Date in
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day], from: transaction.date)
+            return calendar.date(from: components) ?? transaction.date
+        })
+        
+        let daysWithTransactions = uniqueExpenseDates.count
+        
+        let totalExpenseAmount = totalExpenses()
+        
+        return totalExpenseAmount / Float(daysWithTransactions)
+    }
 }
+
+

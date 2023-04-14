@@ -6,8 +6,11 @@ import RealmSwift
 struct TransactionView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @Environment(\.dismiss) var dismiss
+    
     @ObservedResults(TransactionItem.self) var transactions
     @ObservedResults(Category.self) var categories
+    
+    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
     
     var body: some View {
         NavigationStack {
@@ -33,6 +36,8 @@ struct TransactionView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("colorBG"))
             .navigationBarTitle("Transactions", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -68,10 +73,10 @@ struct TransactionView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         if transaction.type == CategoryType.expense {
-                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency())")
+                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
                                 .font(.title3).bold()
                         } else {
-                            Text(transaction.amount.formattedWithSeparatorAndCurrency())
+                            Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
                                 .font(.title3).bold()
                         }
                         Spacer()
@@ -96,7 +101,7 @@ struct TransactionView: View {
                             .foregroundColor(Color(.gray)).textCase(.uppercase)
                             .font(.subheadline).dynamicTypeSize(.small)
                         Spacer()
-                        Text(category.type.rawValue)
+                        Text(category.type.localizedName())
                             .foregroundColor(Color(.gray)).textCase(.uppercase)
                             .font(.subheadline).dynamicTypeSize(.small)
                     }
