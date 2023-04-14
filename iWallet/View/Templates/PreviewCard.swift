@@ -4,9 +4,6 @@ import SwiftUI
 
 func previewCard() -> some View {
     VStack {
-        let welcomeLocalized: LocalizedStringKey = "Welcome"
-        let listLocalized: LocalizedStringKey = "The list of transactions is currently empty,"
-        let pleaseLocalized: LocalizedStringKey = "please add transaction."
         
         VStack(alignment: .center) {
             Spacer(minLength: 20)
@@ -17,14 +14,14 @@ func previewCard() -> some View {
             Text("iWallet")
                 .foregroundColor(.gray).bold()
                 .font(.title)
-            Text(welcomeLocalized)
+            Text("Welcome")
                 .foregroundColor(.gray)
             Spacer(minLength: 20)
             
-            Text(listLocalized)
+            Text("The list of transactions is currently empty,")
                 .foregroundColor(.gray)
                 .font(.system(size: 12))
-            Text(pleaseLocalized)
+            Text("please add transaction.")
                 .foregroundColor(.gray)
                 .font(.system(size: 12))
             Spacer(minLength: 20)

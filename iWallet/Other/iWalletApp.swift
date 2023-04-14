@@ -16,13 +16,17 @@ struct iWalletApp: App {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         
         WindowGroup {
-            if !hasRunBefore {
-                CheckFirstRunView()
-                    .environmentObject(viewModel)
-            } else {
-                HomeView()
-                    .environmentObject(viewModel)
+                if !hasRunBefore {
+                    withAnimation {
+                        CheckFirstRunView()
+                    }
+                        .environmentObject(viewModel)
+                } else {
+                    withAnimation {
+                        HomeView()
+                            .environmentObject(viewModel)
+                    }
+                }
             }
-        }
     }
 }

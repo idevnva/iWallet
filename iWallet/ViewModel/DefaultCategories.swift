@@ -11,43 +11,7 @@ import RealmSwift
 let deviceLanguage = Locale.current.language.languageCode?.identifier
 
 let defaultCategories = {
-    switch deviceLanguage {
-    case "ru":
-        return [
-            // Все категории для расхода
-            Category(value: ["name": NSLocalizedString("Автомобиль", comment: "Автомобиль"), "icon": "car", "color": "colorBlue", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Банк", comment: "Банк"), "icon": "creditcard", "color": "colorBlue1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Бизнес-услуги", comment: "Бизнес-услуги"), "icon": "person.2", "color": "colorBlue2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Благотворительность", comment: "Благотворительность"), "icon": "figure.roll", "color": "colorGreen", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Государство", comment: "Государство"), "icon": "network.badge.shield.half.filled", "color": "colorGreen1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Дети", comment: "Дети"), "icon": "figure.2.and.child.holdinghands", "color": "colorGreen2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Дом", comment: "Дом"), "icon": "house", "color": "colorYellow", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Домашние животные", comment: "Домашние животные"), "icon": "fish", "color": "colorYellow1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Еда вне дома", comment: "Еда вне дома"), "icon": "popcorn", "color": "colorYellow2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Здоровье", comment: "Здоровье"), "icon": "heart", "color": "colorRed", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Красота", comment: "Красота"), "icon": "fleuron", "color": "colorRed1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Мобильная Связь", comment: "Мобильная Связь"), "icon": "wifi", "color": "colorRed2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Образование", comment: "Образование"), "icon": "book", "color": "colorBrown", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Одежда и обувь", comment: "Одежда и обувь"), "icon": "backpack", "color": "colorBrown1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Подарки", comment: "Подарки"), "icon": "gift", "color": "colorBrown2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Продукты питания", comment: "Продукты питания"), "icon": "cart", "color": "colorPurple", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Путешествия", comment: "Путешествия"), "icon": "airplane", "color": "colorPurple1", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Развлечения", comment: "Развлечения"), "icon": "music.mic", "color": "colorPurple2", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Техника", comment: "Техника"), "icon": "display", "color": "colorGray", "type": CategoryType.expense] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Транспорт", comment: "Транспорт"), "icon": "bus.fill", "color": "colorGray1", "type": CategoryType.expense] as [String : Any]),
-            
-            // Все категории для дохода
-            Category(value: ["name": NSLocalizedString("Аренда", comment: "Аренда"), "icon": "key", "color": "colorBlue", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Биржа", comment: "Биржа"), "icon": "arrow.triangle.2.circlepath", "color": "colorBlue1", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Дивиденды", comment: "Дивиденды"), "icon": "chart.xyaxis.line", "color": "colorBlue2", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Заработная плата", comment: "Заработная плата"), "icon": "dollarsign", "color": "colorGreen", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Подарки", comment: "Подарки"), "icon": "shippingbox.circle", "color": "colorGreen1", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Подработка", comment: "Подработка"), "icon": "person.fill.checkmark", "color": "colorGreen2", "type": CategoryType.income] as [String : Any]),
-            Category(value: ["name": NSLocalizedString("Проценты по счетам", comment: "Проценты по счетам"), "icon": "percent", "color": "colorYellow", "type": CategoryType.income] as [String : Any])
-        ]
-        
-    default:
-        return [
+    [
             // Все категории для расхода
             Category(value: ["name": NSLocalizedString("Car", comment: "Car"), "icon": "car", "color": "colorBlue", "type": CategoryType.expense] as [String : Any]),
             Category(value: ["name": NSLocalizedString("Bank", comment: "Bank"), "icon": "creditcard", "color": "colorBlue1", "type": CategoryType.expense] as [String : Any]),
@@ -79,5 +43,6 @@ let defaultCategories = {
             Category(value: ["name": NSLocalizedString("Part time job", comment: "Part time job"), "icon": "person.fill.checkmark", "color": "colorGreen2", "type": CategoryType.income] as [String : Any]),
             Category(value: ["name": NSLocalizedString("Interest on accounts", comment: "Interest on accounts"), "icon": "percent", "color": "colorYellow", "type": CategoryType.income] as [String : Any])
         ]
-    }
+    
 }()
+

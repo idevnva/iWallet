@@ -63,3 +63,37 @@
 "Welcome" = "Добро пожаловать!";
 "The list of transactions is currently empty," = "Список транзакций в настоящее время пуст,";
 "please add transaction." = "пожалуйста добавьте транзакцию.";
+
+// DefaultCategories
+// Все категории для расхода
+"Car" = "Автомобиль";
+"Bank" = "Банк";
+"Business services" = "Бизнес услуги";
+"Charity" = "Благотворительность";
+"State" = "Государство";
+"Children" = "Дети";
+"House" = "Дом";
+"Pets" = "Домашние животные";
+"Eating out" = "Еда вне дома";
+"Health" = "Здоровье";
+"Beauty" = "Красота";
+"Mobile connection" = "Мобильная связь";
+"Education" = "Образование";
+"Clothing and footwear" = "Одежда и обувь";
+"Present" = "Подарки";
+"Food" = "Продукты питания";
+"Trips" = "Потушествия";
+"Entertainment" = "Развлечение";
+"Technique" = "Техника";
+"Transport" = "Транспорт";
+// Все категории для дохода
+"Rent" = "Аренда";
+"Exchange" = "Биржа";
+"Dividends" = "Дивиденды";
+"Wage" = "Заработная плата";
+"Present" = "Подарки";
+"Part time job" = "Подработка";
+"Interest on accounts" = "Проценты по счетам";
+
+// CheckFirstRunView
+"Welcome to the iWallet!" = "Добро пожаловать в iWallet";

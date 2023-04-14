@@ -63,3 +63,37 @@
 "Welcome" = "Welcome!";
 "The list of transactions is currently empty," = "The list of transactions is currently empty,";
 "please add transaction." = "please add transaction.";
+
+// DefaultCategories
+// Все категории для расхода
+"Car" = "Car";
+"Bank" = "Bank";
+"Business services" = "Business services";
+"Charity" = "Charity";
+"State" = "State";
+"Children" = "Children";
+"House" = "House";
+"Pets" = "Pets";
+"Eating out" = "Eating out";
+"Health" = "Health";
+"Beauty" = "Beauty";
+"Mobile connection" = "Mobile connection";
+"Education" = "Education";
+"Clothing and footwear" = "Clothing and footwear";
+"Present" = "Present";
+"Food" = "Food";
+"Trips" = "Trips";
+"Entertainment" = "Entertainment";
+"Technique" = "Technique";
+"Transport" = "Transport";
+// Все категории для дохода
+"Rent" = "Rent";
+"Exchange" = "Exchange";
+"Dividends" = "Dividends";
+"Wage" = "Wage";
+"Present" = "Present";
+"Part time job" = "Part time job";
+"Interest on accounts" = "Interest on accounts";
+
+// CheckFirstRunView
+"Welcome to the iWallet!" = "Welcome to the iWallet!";

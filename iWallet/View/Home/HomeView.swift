@@ -10,23 +10,21 @@ struct HomeView: View {
     @State private var showAddTransaction: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
     
-    private let setting: LocalizedStringKey = "Settings"
-    
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         HStack {
-                            BalanceView(amount: viewModel.balance(), type: LocalizedStringKey("Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                            BalanceView(amount: viewModel.balance(), type: "Balance", icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.averageDailyExpense(), type: LocalizedStringKey("Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                            BalanceView(amount: viewModel.averageDailyExpense(), type: "Expense average", icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
                         }
                         Spacer(minLength: 10)
                         HStack {
-                            BalanceView(amount: viewModel.totalIncomes(), type: LocalizedStringKey("Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
+                            BalanceView(amount: viewModel.totalIncomes(), type: "Income", icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
                             Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.totalExpenses(), type: LocalizedStringKey("Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                            BalanceView(amount: viewModel.totalExpenses(), type: "Expense", icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
                         }
                     }
                     .padding()
@@ -130,12 +128,11 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            showSettingView.toggle()
+                            withAnimation {
+                                showSettingView.toggle()
+                            }
                         } label: {
-//                            Image(systemName: "gearshape.circle")
-//                                .font(.title3)
-//                                .foregroundColor(Color("colorBalanceText"))
-                            Text(setting)
+                            Text("Settings")
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {

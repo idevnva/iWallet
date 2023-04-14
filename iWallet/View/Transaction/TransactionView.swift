@@ -9,9 +9,6 @@ struct TransactionView: View {
     @ObservedResults(TransactionItem.self) var transactions
     @ObservedResults(Category.self) var categories
     
-    private let transactionsLocalized: LocalizedStringKey = "Transactions"
-    private let backLocalized: LocalizedStringKey = "Back"
-    
     var body: some View {
         NavigationStack {
             List {
@@ -36,13 +33,13 @@ struct TransactionView: View {
                     }
                 }
             }
-            .navigationBarTitle(transactionsLocalized, displayMode: .inline)
+            .navigationBarTitle("Transactions", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Text(backLocalized)
+                        Text("Back")
                     }
                 }
                 

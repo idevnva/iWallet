@@ -10,7 +10,6 @@ final class SceneViewModel: ObservableObject {
     init() {
         let config = Realm.Configuration(schemaVersion: 13)
         Realm.Configuration.defaultConfiguration = config
-        //checkFirstRun()
         loadData()
     }
     
@@ -30,14 +29,6 @@ final class SceneViewModel: ObservableObject {
 }
 
 extension SceneViewModel {
-    
-//    // Метод проверки на первый запуск
-//    private func checkFirstRun() {
-//        if UserDefaults.standard.bool(forKey: "hasRunBefore") == false {
-//            CheckFirstRunView()
-//            UserDefaults.standard.set(true, forKey: "hasRunBefore")
-//        }
-//    }
     
     // Добавления категорий по умолчанию
      func createDefaultCategories() {

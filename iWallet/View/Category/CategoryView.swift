@@ -11,12 +11,6 @@ struct CategoryView: View {
     @State var selectedType: CategoryType = .expense
     @State var showAddCategory: Bool = false
     
-    private let welcomeLocalized: LocalizedStringKey = "Welcome"
-    private let listLocalized: LocalizedStringKey = "The list of categories is currently empty,"
-    private let pleaseLocalized: LocalizedStringKey = "please add category."
-    private let backLocalized: LocalizedStringKey = "Back"
-    private let newLocalized: LocalizedStringKey = "New"
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -31,14 +25,14 @@ struct CategoryView: View {
                             Text("iWallet")
                                 .foregroundColor(.gray).bold()
                                 .font(.title)
-                            Text(welcomeLocalized)
+                            Text("Welcome")
                                 .foregroundColor(.gray)
                             Spacer(minLength: 20)
                             
-                            Text(listLocalized)
+                            Text("The list of categories is currently")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
-                            Text(pleaseLocalized)
+                            Text("please add category.")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 12))
                             Spacer(minLength: 20)
@@ -67,14 +61,14 @@ struct CategoryView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text(backLocalized)
+                        Text("Back")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showAddCategory.toggle()
                     } label: {
-                        Text(newLocalized)
+                        Text("New")
                     }
                 }
                 ToolbarItem(placement: .principal) {
