@@ -104,11 +104,20 @@ struct AddCategory: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        playFeedbackHaptic(.soft)
-                        viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
-                        dismiss()
+                        if name.isEmpty {
+                            
+                        } else {
+                            playFeedbackHaptic(.soft)
+                            viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
+                            dismiss()
+                        }
                     } label: {
-                        Text("Add")
+                        if name.isEmpty {
+                            Text("Add")
+                                .foregroundColor(.gray)
+                        } else {
+                            Text("Add")
+                        }
                     }
                 }
             }
