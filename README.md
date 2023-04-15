@@ -1,4 +1,4 @@
-# iWallet - Expenses and Income
+# iWallet - Expenses and Income ![icon-2](https://user-images.githubusercontent.com/127990298/232225542-c326d20e-6440-4ad4-937b-95a67d828915.png)
 
 ![icon-2](https://user-images.githubusercontent.com/127990298/232225542-c326d20e-6440-4ad4-937b-95a67d828915.png)
 
