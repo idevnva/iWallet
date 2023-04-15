@@ -31,6 +31,7 @@ struct TransactionView: View {
                             }
                             .onDelete(perform: { indexSet in
                                 deleteTransaction(at: indexSet, from: sortedTransactions)
+                                playFeedbackHaptic(.light)
                             })
                         }
                     }
@@ -42,7 +43,7 @@ struct TransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.soft)
+                        playFeedbackHaptic(.light)
                         dismiss()
                     } label: {
                         Text("Back")

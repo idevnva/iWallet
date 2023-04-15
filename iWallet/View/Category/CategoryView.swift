@@ -59,7 +59,7 @@ struct CategoryView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.soft)
+                        playFeedbackHaptic(.light)
                         dismiss()
                     } label: {
                         Text("Back")
@@ -67,7 +67,7 @@ struct CategoryView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        playFeedbackHaptic(.soft)
+                        playFeedbackHaptic(.light)
                         showAddCategory.toggle()
                     } label: {
                         Text("New")

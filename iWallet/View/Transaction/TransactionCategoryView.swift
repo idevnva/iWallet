@@ -77,6 +77,7 @@ struct TransactionCategoryView: View {
                         }
                         .onDelete(perform: { indexSet in
                             deleteTransaction(at: indexSet, from: sortedTransactions)
+                            playFeedbackHaptic(.light)
                         })
                     }
                 }

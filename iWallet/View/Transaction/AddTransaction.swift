@@ -123,7 +123,7 @@ struct AddTransaction: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.soft)
+                        playFeedbackHaptic(.light)
                         dismiss()
                     } label: {
                         Text("Cancel")
