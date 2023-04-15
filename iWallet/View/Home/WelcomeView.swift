@@ -26,7 +26,7 @@ struct WelcomeView: View {
                             Spacer(minLength: 50)
                             Text("Welcome to the iWallet!")
                                 .foregroundColor(.gray).bold()
-                                .font(.title)
+                                .font(.title2)
                             Spacer(minLength: 50)
                         }
                         
