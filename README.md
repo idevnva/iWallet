@@ -1,4 +1,4 @@
-# iWallet
+# iWallet - Expenses and Income
 
 iWallet - Expenses and Income
 A convenient and easy-to-use application for controlling and accounting for your expenses and income. Join us and start taking control of your finances today!
