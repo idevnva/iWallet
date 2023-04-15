@@ -70,6 +70,7 @@ struct WelcomeView: View {
                 
                 VStack {
                     Button {
+                        playFeedbackHaptic(.soft)
                         hasRunBefore = true
                         currencySymbol = selectedCurrency.symbol
                         if vibrateOnSilent {

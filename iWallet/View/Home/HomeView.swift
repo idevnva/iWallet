@@ -115,6 +115,7 @@ struct HomeView: View {
                 
                 HStack {
                     Button {
+                        playFeedbackHaptic(.soft)
                         showAddTransaction.toggle()
                     } label: {
                         ZStack {
@@ -132,6 +133,7 @@ struct HomeView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             withAnimation {
+                                playFeedbackHaptic(.soft)
                                 showSettingView.toggle()
                             }
                         } label: {

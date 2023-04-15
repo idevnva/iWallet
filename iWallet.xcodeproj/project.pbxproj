@@ -25,6 +25,7 @@
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67329E8A2A800E088DB /* DefaultCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67229E8A2A800E088DB /* DefaultCategories.swift */; };
 		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
+		0880C67D29EA24E600E088DB /* playFeedbackHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67C29EA24E600E088DB /* playFeedbackHaptic.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
@@ -49,6 +50,7 @@
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67229E8A2A800E088DB /* DefaultCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategories.swift; sourceTree = "<group>"; };
 		0880C67429E8AB9200E088DB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		0880C67C29EA24E600E088DB /* playFeedbackHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playFeedbackHaptic.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				08558B9F29D381F10047F959 /* ColorPicker.swift */,
 				08558BA129D388080047F959 /* IconPicker.swift */,
 				086A5A1F29E34B0000D044F7 /* PreviewCard.swift */,
+				0880C67C29EA24E600E088DB /* playFeedbackHaptic.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
+				0880C67D29EA24E600E088DB /* playFeedbackHaptic.swift in Sources */,
 				08558B9E29D380920047F959 /* AddCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

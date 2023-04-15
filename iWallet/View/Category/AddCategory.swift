@@ -96,6 +96,7 @@ struct AddCategory: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        playFeedbackHaptic(.soft)
                         dismiss()
                     } label: {
                         Text("Back")
@@ -103,6 +104,7 @@ struct AddCategory: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        playFeedbackHaptic(.soft)
                         viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                         dismiss()
                     } label: {

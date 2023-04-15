@@ -19,6 +19,7 @@ struct SettingView: View {
             List {
                 Section {
                     Button {
+                        playFeedbackHaptic(.soft)
                         showTransactionView.toggle()
                     } label: {
                         HStack {
@@ -37,6 +38,7 @@ struct SettingView: View {
                     }
                     
                     Button {
+                        playFeedbackHaptic(.soft)
                         showCategory.toggle()
                     } label: {
                         HStack {
@@ -75,6 +77,7 @@ struct SettingView: View {
                 
                 Section {
                     Button {
+                        playFeedbackHaptic(.soft)
                         openURL(URL(string: NSLocalizedString("https://idevnva.com/", comment: "https://idevnva.com/"))!)
                     } label: {
                         HStack {
@@ -93,6 +96,7 @@ struct SettingView: View {
                     }
                     
                     Button {
+                        playFeedbackHaptic(.soft)
                         openURL(URL(string: NSLocalizedString("https://t.me/iwalletapp", comment: "https://t.me/iwalletapp"))!)
                     } label: {
                         HStack {
@@ -111,6 +115,7 @@ struct SettingView: View {
                     }
                     
                     Button {
+                        playFeedbackHaptic(.soft)
                         openURL(URL(string: NSLocalizedString("https://t.me/idevnva", comment: "https://t.me/idevnva"))!)
                     } label: {
                         HStack {
@@ -143,10 +148,12 @@ struct SettingView: View {
             .onChange(of: selectedCurrency) { newCurrency in
                 // Сохраняем символ валюты при изменении выбора
                 currencySymbol = newCurrency.symbol
+                playFeedbackHaptic(.soft)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        playFeedbackHaptic(.soft)
                         dismiss()
                     } label: {
                         Text("Back")

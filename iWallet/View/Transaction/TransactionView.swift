@@ -42,6 +42,7 @@ struct TransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        playFeedbackHaptic(.soft)
                         dismiss()
                     } label: {
                         Text("Back")

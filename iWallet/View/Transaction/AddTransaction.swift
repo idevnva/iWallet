@@ -74,6 +74,7 @@ struct AddTransaction: View {
                             Picker("Category", selection: $selectedCategory) {
                                 ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
                                     HStack {
+                                       
                                         Image(systemName: category.icon)
                                             .foregroundColor(Color(.black))
                                             .frame(width: 30, height: 30)
@@ -122,6 +123,7 @@ struct AddTransaction: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        playFeedbackHaptic(.soft)
                         dismiss()
                     } label: {
                         Text("Cancel")
@@ -132,6 +134,7 @@ struct AddTransaction: View {
                         if amount.isEmpty {
                             alertAmount = true
                         } else {
+                            playFeedbackHaptic(.soft)
                             viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
