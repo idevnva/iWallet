@@ -12,25 +12,32 @@ struct HomeView: View {
     @State private var showSettingView: Bool = false
     @State private var showAddTransaction: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
+    @State private var expenseHeight: CGFloat = 0
+    
+    private let adaptive =
+    [
+        GridItem(.adaptive(minimum: 165))
+    ]
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack {
-                        HStack {
-                            BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
-                            Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
-                        }
-                        Spacer(minLength: 10)
-                        HStack {
-                            BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
-                            Spacer(minLength: 10)
-                            BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
-                        }
+                    LazyVGrid(columns: adaptive) {
+                        
+                        BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                        
+                        BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                            .frame(height: expenseHeight)
+                        
+                        BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
+                            .frame(height: expenseHeight)
+                        
+                        BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                        
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top)
                     
                     Picker("Тип", selection: $selectedCategoryType) {
                         ForEach(CategoryType.allCases, id: \.self) { type in

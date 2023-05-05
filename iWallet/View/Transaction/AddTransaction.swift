@@ -16,6 +16,7 @@ struct AddTransaction: View {
     @State var note: String = ""
     @State var selectedType: CategoryType = .expense
     @State var alertAmount: Bool = false
+    @State var alertCategory: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -140,6 +141,9 @@ struct AddTransaction: View {
                         }
                     } label: {
                         Text("Add")
+                    }
+                    .alert("Please enter category", isPresented: $alertCategory) {
+                        Button("Okay", role: .cancel) { }
                     }
                     .alert("Please enter amount", isPresented: $alertAmount) {
                         Button("Okay", role: .cancel) { }

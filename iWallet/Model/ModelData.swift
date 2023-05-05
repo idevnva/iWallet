@@ -72,45 +72,75 @@ extension Float {
 enum Currency: String, CaseIterable, Identifiable, Hashable {
     case usd = "USD"
     case eur = "EUR"
-    case rub = "RUB"
-    case tmt = "TMT"
-    case byn = "BYN"
-    case TRY = "TRY"
-    case kzt = "KZT"
-    case uah = "UAH"
-    case cny = "CNY"
+    case jpy = "JPY"
     case gbp = "GBP"
+    case aud = "AUD"
+    case cad = "CAD"
+    case chf = "CHF"
+    case cny = "CNY"
+    case rub = "RUB"
+    case inr = "INR"
+    case brl = "BRL"
+    case zar = "ZAR"
+    case TRY = "TRY"
+    case mxn = "MXN"
+    case idr = "IDR"
+    case hkd = "HKD"
+    case sgd = "SGD"
+    case twd = "TWD"
+    case krw = "KRW"
+    case thb = "THB"
+    case myr = "MYR"
+    case php = "PHP"
+    case vnd = "VND"
+    case kes = "KES"
+    case egp = "EGP"
+    case byn = "BYN"
+    case uah = "UAH"
+    case kzt = "KZT"
+    case tmt = "TMT"
     
     var id: String {
         return self.rawValue
     }
     
     var symbol: String {
-        switch self {
-        case .usd:
-            return "$"
-        case .eur:
-            return "€"
-        case .rub:
-            return "₽"
-        case .tmt:
-            return "m"
-        case .byn:
-            return "Br"
-        case .TRY:
-            return "₺"
-        case .kzt:
-            return "₸"
-        case .uah:
-            return "₴"
-        case .cny:
-            return "¥"
-        case .gbp:
-            return "£"
-        }
+        let currencySymbols: [Currency: String] = [
+            .usd: "$",
+            .eur: "€",
+            .jpy: "¥",
+            .gbp: "£",
+            .aud: "$",
+            .cad: "$",
+            .chf: "CHF",
+            .cny: "¥",
+            .rub: "₽",
+            .inr: "₹",
+            .brl: "R$",
+            .zar: "R",
+            .TRY: "₺",
+            .mxn: "$",
+            .idr: "Rp",
+            .hkd: "HK$",
+            .sgd: "S$",
+            .twd: "NT$",
+            .krw: "₩",
+            .thb: "฿",
+            .myr: "RM",
+            .php: "₱",
+            .vnd: "₫",
+            .kes: "KSh",
+            .egp: "£",
+            .byn: "Br",
+            .uah: "₴",
+            .kzt: "₸",
+            .tmt: "m"
+        ]
+        return currencySymbols[self] ?? ""
     }
     
     static var sortedCases: [Currency] {
-        return Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue })
+        return allCases.sorted { $0.rawValue < $1.rawValue }
     }
 }
+
