@@ -8,6 +8,7 @@ struct HomeView: View {
     @ObservedResults(Category.self) var categories
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     @State private var showSettingView: Bool = false
     @State private var showAddTransaction: Bool = false
@@ -117,30 +118,31 @@ struct HomeView: View {
                     }
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
-                    .padding(.bottom, 80)
+                    .padding(.bottom, 100)
                 }
+                
                 
                 HStack {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         showAddTransaction.toggle()
                     } label: {
                         ZStack {
                             Circle()
-                                .frame(width: 50, height: 50)
+                                .frame(width: 55, height: 55)
                                 .foregroundColor(Color("colorBalanceText"))
                             Image(systemName: "plus")
                                 .foregroundColor(Color("colorBG"))
-                                .font(.system(size: 25))
+                                .font(.system(size: 30))
                         }
                     }
                 }
-                .padding()
+                .padding(.all, 25)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             withAnimation {
-                                playFeedbackHaptic(.light)
+                                playFeedbackHaptic(selectedFeedbackHaptic)
                                 showSettingView.toggle()
                             }
                         } label: {

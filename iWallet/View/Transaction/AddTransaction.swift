@@ -9,6 +9,9 @@ struct AddTransaction: View {
     @ObservedResults(Category.self) var categories
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
+    @FocusState private var amountIsFocused: Bool
+    @FocusState private var noteIsFocused: Bool
     
     @State var selectedCategory: Category
     @State var amount: String = ""
@@ -18,6 +21,7 @@ struct AddTransaction: View {
     @State var alertAmount: Bool = false
     @State var alertCategory: Bool = false
     
+    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -25,12 +29,14 @@ struct AddTransaction: View {
                     Section {
                         if selectedType == .expense {
                             TextField("-100 \(currencySymbol)", text: $amount)
+                                .font(.title3)
                                 .keyboardType(.decimalPad)
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
                                 .cornerRadius(10)
                                 .padding(.bottom, 15)
+                                .focused($amountIsFocused)
                         } else {
                             TextField("+100 \(currencySymbol)", text: $amount)
                                 .keyboardType(.decimalPad)
@@ -45,6 +51,9 @@ struct AddTransaction: View {
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
+                    .onTapGesture {
+                        amountIsFocused.toggle()
+                    }
                     
                     Section {
                         TextField("Note", text: $note)
@@ -53,10 +62,14 @@ struct AddTransaction: View {
                             .background(Color("colorBalanceBG"))
                             .cornerRadius(10)
                             .padding(.bottom, 15)
+                            .focused($noteIsFocused)
                     } header: {
                         Text("Enter note:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
+                    }
+                    .onTapGesture {
+                        noteIsFocused.toggle()
                     }
                     
                     Section {
@@ -75,7 +88,6 @@ struct AddTransaction: View {
                             Picker("Category", selection: $selectedCategory) {
                                 ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
                                     HStack {
-                                       
                                         Image(systemName: category.icon)
                                             .foregroundColor(Color(.black))
                                             .frame(width: 30, height: 30)
@@ -120,11 +132,14 @@ struct AddTransaction: View {
             }
             .background(Color("colorBG"))
             .navigationBarTitle("", displayMode: .inline)
-            
+            .onTapGesture {
+                amountIsFocused = false
+                noteIsFocused = false
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Cancel")
@@ -134,15 +149,17 @@ struct AddTransaction: View {
                     Button {
                         if amount.isEmpty {
                             alertAmount = true
+                        } else if selectedCategory.name == "" {
+                            alertCategory = true
                         } else {
-                            playFeedbackHaptic(.soft)
+                            playFeedbackHaptic(selectedFeedbackHaptic)
                             viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
                     } label: {
                         Text("Add")
                     }
-                    .alert("Please enter category", isPresented: $alertCategory) {
+                    .alert("Please select a category", isPresented: $alertCategory) {
                         Button("Okay", role: .cancel) { }
                     }
                     .alert("Please enter amount", isPresented: $alertAmount) {

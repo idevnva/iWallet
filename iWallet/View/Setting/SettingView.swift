@@ -9,6 +9,7 @@ struct SettingView: View {
     @Environment(\.openURL) var openURL
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     @State private var selectedCurrency: Currency = .usd
     @State var showCategory: Bool = false
@@ -19,7 +20,7 @@ struct SettingView: View {
             List {
                 Section {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         showTransactionView.toggle()
                     } label: {
                         HStack {
@@ -38,7 +39,7 @@ struct SettingView: View {
                     }
                     
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         showCategory.toggle()
                     } label: {
                         HStack {
@@ -73,11 +74,19 @@ struct SettingView: View {
                             }
                         }
                     }
+                    HStack {
+                        Image(systemName: selectedFeedbackHaptic ? "iphone.radiowaves.left.and.right.circle" : "iphone.slash.circle")
+                            .foregroundColor(Color("colorBlack"))
+                            .frame(width: 30, height: 30)
+                            .background(Color("colorPurple2"))
+                            .cornerRadius(7.5)
+                        Toggle("Vibration", isOn: $selectedFeedbackHaptic)
+                    }
                 }
                 
                 Section {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         openURL(URL(string: NSLocalizedString("https://idevnva.com/", comment: "https://idevnva.com/"))!)
                     } label: {
                         HStack {
@@ -96,7 +105,7 @@ struct SettingView: View {
                     }
                     
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         openURL(URL(string: NSLocalizedString("https://t.me/iwalletapp", comment: "https://t.me/iwalletapp"))!)
                     } label: {
                         HStack {
@@ -115,7 +124,7 @@ struct SettingView: View {
                     }
                     
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         openURL(URL(string: NSLocalizedString("https://t.me/idevnva", comment: "https://t.me/idevnva"))!)
                     } label: {
                         HStack {
@@ -148,12 +157,12 @@ struct SettingView: View {
             .onChange(of: selectedCurrency) { newCurrency in
                 // Сохраняем символ валюты при изменении выбора
                 currencySymbol = newCurrency.symbol
-                playFeedbackHaptic(.light)
+                playFeedbackHaptic(selectedFeedbackHaptic)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")

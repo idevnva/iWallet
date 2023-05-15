@@ -11,6 +11,7 @@ struct TransactionView: View {
     @ObservedResults(Category.self) var categories
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -31,7 +32,7 @@ struct TransactionView: View {
                             }
                             .onDelete(perform: { indexSet in
                                 deleteTransaction(at: indexSet, from: sortedTransactions)
-                                playFeedbackHaptic(.light)
+                                playFeedbackHaptic(selectedFeedbackHaptic)
                             })
                         }
                     }
@@ -43,7 +44,7 @@ struct TransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")

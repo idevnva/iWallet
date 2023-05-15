@@ -9,6 +9,7 @@ struct TransactionCategoryView: View {
     
     @Binding var selectedCategory: Category
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     var filteredTransactions: [TransactionItem] {
         filterTransaction(category: selectedCategory, transactions: Array(transactions))
@@ -77,7 +78,7 @@ struct TransactionCategoryView: View {
                         }
                         .onDelete(perform: { indexSet in
                             deleteTransaction(at: indexSet, from: sortedTransactions)
-                            playFeedbackHaptic(.light)
+                            playFeedbackHaptic(selectedFeedbackHaptic)
                         })
                     }
                 }
