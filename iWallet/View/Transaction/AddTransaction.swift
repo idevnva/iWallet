@@ -12,6 +12,7 @@ struct AddTransaction: View {
     @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     @FocusState private var amountIsFocused: Bool
     @FocusState private var noteIsFocused: Bool
+    @FocusState private var keyIsFocused: Bool
     
     @State var selectedCategory: Category
     @State var amount: String = ""
@@ -26,51 +27,53 @@ struct AddTransaction: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    Section {
-                        if selectedType == .expense {
-                            TextField("-100 \(currencySymbol)", text: $amount)
-                                .font(.title3)
-                                .keyboardType(.decimalPad)
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color("colorBalanceBG"))
-                                .cornerRadius(10)
-                                .padding(.bottom, 15)
-                                .focused($amountIsFocused)
-                        } else {
-                            TextField("+100 \(currencySymbol)", text: $amount)
-                                .keyboardType(.decimalPad)
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color("colorBalanceBG"))
-                                .cornerRadius(10)
-                                .padding(.bottom, 15)
+                        Section {
+                            if selectedType == .expense {
+                                TextField("-100 \(currencySymbol)", text: $amount)
+                                    .font(.title3)
+                                    .keyboardType(.decimalPad)
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color("colorBalanceBG"))
+                                    .cornerRadius(10)
+                                    .padding(.bottom, 15)
+                                    .focused($amountIsFocused)
+                            } else {
+                                TextField("+100 \(currencySymbol)", text: $amount)
+                                    .font(.title3)
+                                    .keyboardType(.decimalPad)
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color("colorBalanceBG"))
+                                    .cornerRadius(10)
+                                    .padding(.bottom, 15)
+                                    .focused($amountIsFocused)
+                            }
+                        } header: {
+                            Text("Enter amount:")
+                                .font(.caption).textCase(.uppercase)
+                                .padding(.leading, 10)
                         }
-                    } header: {
-                        Text("Enter amount:")
-                            .font(.caption).textCase(.uppercase)
-                            .padding(.leading, 10)
-                    }
-                    .onTapGesture {
-                        amountIsFocused.toggle()
-                    }
-                    
-                    Section {
-                        TextField("Note", text: $note)
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color("colorBalanceBG"))
-                            .cornerRadius(10)
-                            .padding(.bottom, 15)
-                            .focused($noteIsFocused)
-                    } header: {
-                        Text("Enter note:")
-                            .font(.caption).textCase(.uppercase)
-                            .padding(.leading, 10)
-                    }
-                    .onTapGesture {
-                        noteIsFocused.toggle()
-                    }
+                        .onTapGesture {
+                            amountIsFocused.toggle()
+                        }
+                        
+                        Section {
+                            TextField("Note", text: $note)
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("colorBalanceBG"))
+                                .cornerRadius(10)
+                                .padding(.bottom, 15)
+                                .focused($noteIsFocused)
+                        } header: {
+                            Text("Enter note:")
+                                .font(.caption).textCase(.uppercase)
+                                .padding(.leading, 10)
+                        }
+                        .onTapGesture {
+                            noteIsFocused.toggle()
+                        }
                     
                     Section {
                         Picker("Category type", selection: $selectedType) {
@@ -130,12 +133,9 @@ struct AddTransaction: View {
                 .padding(.top, 20)
                 
             }
+            .scrollDismissesKeyboard(.immediately)
             .background(Color("colorBG"))
             .navigationBarTitle("", displayMode: .inline)
-            .onTapGesture {
-                amountIsFocused = false
-                noteIsFocused = false
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {

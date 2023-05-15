@@ -101,9 +101,7 @@ struct AddCategory: View {
             }
             .background(Color("colorBG"))
             .navigationBarTitle("Create a category", displayMode: .inline)
-            .onTapGesture {
-                nameIsFocused = false
-            }
+            .scrollDismissesKeyboard(.immediately)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
