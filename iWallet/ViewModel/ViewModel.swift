@@ -181,25 +181,9 @@ extension SceneViewModel {
         return totalIncomes() - totalExpenses()
     }
     
-    // Не нужная функция оставил вдруг понадобиться
-    // Расчет средней суммы за день, сначала найдем общее количество дней между самой ранней и самой поздней транзакцией, а затем разделим общую сумму транзакций на количество дней
-    func averageDailyAmount() -> Float {
-        guard let earliestTransaction = transactions.min(by: { $0.date < $1.date }),
-              let latestTransaction = transactions.max(by: { $0.date < $1.date }) else {
-            return 0
-        }
-        
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: earliestTransaction.date, to: latestTransaction.date)
-        guard let days = components.day, days > 0 else {
-            return 0
-        }
-        
-        let totalAmount = transactions.reduce(0) { (result, transaction) -> Float in
-            return result + transaction.amount
-        }
-        
-        return totalAmount / Float(days)
+    // Денежный оборот всего
+    func totalCashFlow() -> Float {
+        return totalIncomes() + totalExpenses()
     }
     
     // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
@@ -220,6 +204,26 @@ extension SceneViewModel {
         let totalExpenseAmount = totalExpenses()
         
         return totalExpenseAmount / Float(daysWithTransactions)
+    }
+    
+    // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
+    func averageDailyIncome() -> Float {
+        let incomeTransactions = transactions.filter { $0.type == .income }
+        guard !incomeTransactions.isEmpty else {
+            return 0
+        }
+        
+        let uniqueIncomeDates = Set(incomeTransactions.map { transaction -> Date in
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day], from: transaction.date)
+            return calendar.date(from: components) ?? transaction.date
+        })
+        
+        let daysWithTransactions = uniqueIncomeDates.count
+        
+        let totalIncomeAmount = totalIncomes()
+        
+        return totalIncomeAmount / Float(daysWithTransactions)
     }
 }
 

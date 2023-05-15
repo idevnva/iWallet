@@ -29,6 +29,7 @@
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
+		08F0A0FD2A12D2FD000F5680 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0A0FC2A12D2FD000F5680 /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		08F0A0FC2A12D2FD000F5680 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				0880C67429E8AB9200E088DB /* WelcomeView.swift */,
 				08558B8729D35EA40047F959 /* HomeView.swift */,
+				08F0A0FC2A12D2FD000F5680 /* FilterView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				08558B9829D35F890047F959 /* BalanceView.swift in Sources */,
 				086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */,
 				08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */,
+				08F0A0FD2A12D2FD000F5680 /* FilterView.swift in Sources */,
 				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
 				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
 				08558BA429D394840047F959 /* ModelData.swift in Sources */,

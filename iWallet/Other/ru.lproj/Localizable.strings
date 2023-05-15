@@ -11,6 +11,8 @@
 "Expense average" = "Средний расход";
 "Income" = "Доход";
 "Expense" = "Расход";
+"Income average" = "Средний доход";
+"Total turnover" = "Общий оборот";
 "Settings" = "Настройки";
 
 // AddTransaction

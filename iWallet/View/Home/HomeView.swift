@@ -12,6 +12,13 @@ struct HomeView: View {
     
     @State private var showSettingView: Bool = false
     @State private var showAddTransaction: Bool = false
+    @State private var showFilterView: Bool = false
+    @State private var showBalance: Bool = true
+    @State private var showExpenseAverage: Bool = true
+    @State private var showIncome: Bool = true
+    @State private var showExpense: Bool = true
+    @State private var showIncomeAverage: Bool = false
+    @State private var showTotalCashFlow: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
     @State private var expenseHeight: CGFloat = 0
     
@@ -25,17 +32,24 @@ struct HomeView: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: adaptive) {
-                        
-                        BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
-                        
-                        BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
-                            .frame(height: expenseHeight)
-                        
-                        BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
-                            .frame(height: expenseHeight)
-                        
-                        BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
-                        
+                        if showBalance == true {
+                            BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                        }
+                        if showExpenseAverage == true {
+                            BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
+                        }
+                        if showIncome == true {
+                            BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
+                        }
+                        if showExpense == true {
+                            BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                        }
+                        if showIncomeAverage == true {
+                            BalanceView(amount: viewModel.averageDailyIncome(), curren: currencySymbol, type: NSLocalizedString("Income average", comment: "Income average"), icon: "plus.forwardslash.minus", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorPurple"))
+                        }
+                        if showTotalCashFlow == true {
+                            BalanceView(amount: viewModel.totalCashFlow(), curren: currencySymbol, type: NSLocalizedString("Total turnover", comment: "Total turnover"), icon: "sum", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGray1"))
+                        }
                     }
                     .padding(.horizontal)
                     .padding(.top)
@@ -139,16 +153,38 @@ struct HomeView: View {
                 }
                 .padding(.all, 25)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            withAnimation {
-                                playFeedbackHaptic(selectedFeedbackHaptic)
-                                showSettingView.toggle()
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        HStack(spacing: 1) {
+                            Button {
+                                withAnimation {
+                                    playFeedbackHaptic(selectedFeedbackHaptic)
+                                    showFilterView.toggle()
+                                }
+                            } label: {
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                                    .font(.subheadline)
                             }
-                        } label: {
-                            Text("Settings")
+                            Button {
+                                withAnimation {
+                                    playFeedbackHaptic(selectedFeedbackHaptic)
+                                    showSettingView.toggle()
+                                }
+                            } label: {
+                                Text("Settings")
+                            }
                         }
+                        
                     }
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Button {
+//                            withAnimation {
+//                                playFeedbackHaptic(selectedFeedbackHaptic)
+//                                showSettingView.toggle()
+//                            }
+//                        } label: {
+//                            Text("Settings")
+//                        }
+//                    }
                     ToolbarItem(placement: .navigationBarLeading) {
                         Text("iWallet")
                             .font(.title)
@@ -164,6 +200,10 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showAddTransaction) {
             AddTransaction(selectedCategory: Category())
+        }
+        .sheet(isPresented: $showFilterView) {
+            FilterView(showBalance: $showBalance, showExpenseAverage: $showExpenseAverage, showIncome: $showIncome, showExpense: $showExpense, showIncomeAverage: $showIncomeAverage, showTotalCashFlow: $showTotalCashFlow)
+                .presentationDetents([.medium, .large])
         }
     }
     
