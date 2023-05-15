@@ -25,6 +25,7 @@
 "Cancel" = "Cancel";
 "Add" = "Add";
 "Please enter amount" = "Please enter amount";
+"Please select a category" = "Please select a category";
 "Okay" = "Okay";
 
 // TransactionView
@@ -60,6 +61,7 @@
 "Feedback" = "Feedback";
 "Application" = "Application";
 "Currency" = "Currency";
+"Vibration" = "Vibration";
 "https://idevnva.com/" = "https://idevnva.com/iwallet/en";
 "https://t.me/iwalletapp" = "https://t.me/iwallet_en";
 "https://t.me/idevnva" = "https://t.me/idevnva";

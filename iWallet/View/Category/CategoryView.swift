@@ -8,6 +8,8 @@ struct CategoryView: View {
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
+    
     @State var selectedType: CategoryType = .expense
     @State var showAddCategory: Bool = false
     
@@ -59,7 +61,7 @@ struct CategoryView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")
@@ -67,7 +69,7 @@ struct CategoryView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         showAddCategory.toggle()
                     } label: {
                         Text("New")

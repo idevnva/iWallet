@@ -6,6 +6,9 @@ struct AddCategory: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
+    @FocusState private var nameIsFocused: Bool
+    
     @State private var selectedType: CategoryType = .expense
     @State private var name: String = ""
     @State private var selectedImage: String = "folder.circle"
@@ -55,12 +58,17 @@ struct AddCategory: View {
                                     .background(Color("colorBalanceBG"))
                                     .cornerRadius(10)
                                     .padding(.bottom, 15)
+                                    .focused($nameIsFocused)
                             }
                         } header: {
                             Text("Enter Name")
                                 .font(.caption).textCase(.uppercase)
                                 .padding(.leading, 10)
                         }
+                        .onTapGesture {
+                            nameIsFocused.toggle()
+                        }
+                        
                         Section {
                             IconPicker(selectedImage: $selectedImage)
                                 .foregroundColor(Color(.black))
@@ -93,10 +101,13 @@ struct AddCategory: View {
             }
             .background(Color("colorBG"))
             .navigationBarTitle("Create a category", displayMode: .inline)
+            .onTapGesture {
+                nameIsFocused = false
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(.light)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")
@@ -107,7 +118,7 @@ struct AddCategory: View {
                         if name.isEmpty {
                             
                         } else {
-                            playFeedbackHaptic(.soft)
+                            playFeedbackHaptic(selectedFeedbackHaptic)
                             viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                             dismiss()
                         }

@@ -11,6 +11,7 @@ import SwiftUI
 struct iWalletApp: App {
     @ObservedObject var viewModel = SceneViewModel()
     @AppStorage("hasRunBefore") private var hasRunBefore = false
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     var body: some Scene {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)

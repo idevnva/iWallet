@@ -8,6 +8,7 @@ struct WelcomeView: View {
     
     @AppStorage("hasRunBefore") private var hasRunBefore = false
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
+    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     @State private var selectedCurrency: Currency = .usd
     @State private var vibrateOnSilent: Bool = true
@@ -70,7 +71,7 @@ struct WelcomeView: View {
                 
                 VStack {
                     Button {
-                        playFeedbackHaptic(.soft)
+                        playFeedbackHaptic(selectedFeedbackHaptic)
                         hasRunBefore = true
                         currencySymbol = selectedCurrency.symbol
                         if vibrateOnSilent {
