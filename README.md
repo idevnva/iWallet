@@ -9,7 +9,6 @@
 
 #### iWallet is an effective personal finance tool that helps you keep track of your income and expenses, keep track of your budget, and achieve your financial goals. Install iWallet and enjoy complete control over your finances!
 
+https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809
 
-![Group 72](https://user-images.githubusercontent.com/127990298/232242339-942a5a96-f80c-4de1-a04e-2ba69504d2f9.jpg)
-
-
+![Group 319](https://github.com/idevnva/iWallet/assets/127990298/5f509056-3207-4b3e-8995-4be1347d28c6)
