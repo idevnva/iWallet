@@ -4,7 +4,11 @@
 
 ## It is a personal finance management assessment tool that will help you keep track of your income and expenses, keep an eye on your budget, and achieve your financial goals. Install iWallet and enjoy complete control over your finances!
 
-<a href="http://browserstack.com/](https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/23f4655e-8f02-482c-b41e-7cfa1adca7d3"  width="168"/></a>
+<a href="https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/bb58e43e-e24b-4692-994a-33b00efed2d1"  width="168"/></a>
+<a href="https://idevnva.com/iwallet"><img alt="Web site" src="https://github.com/idevnva/iWallet/assets/127990298/5716a31a-89f6-4fca-bc63-c6bc2272633b"  width="168"/></a>
+
+
+
 
 ## You can
 * Calculate the average expense per day, taking into account all financial transactions, for more accurate planning and control of your budget.
