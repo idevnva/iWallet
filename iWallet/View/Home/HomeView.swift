@@ -20,7 +20,6 @@ struct HomeView: View {
     @State private var showIncomeAverage: Bool = false
     @State private var showTotalCashFlow: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
-    @State private var expenseHeight: CGFloat = 0
     
     private let adaptive =
     [
@@ -155,15 +154,15 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         HStack(spacing: 1) {
-                            Button {
-                                withAnimation {
-                                    playFeedbackHaptic(selectedFeedbackHaptic)
-                                    showFilterView.toggle()
-                                }
-                            } label: {
-                                Image(systemName: "line.3.horizontal.decrease.circle")
-                                    .font(.subheadline)
-                            }
+//                            Button {
+//                                withAnimation {
+//                                    playFeedbackHaptic(selectedFeedbackHaptic)
+//                                    showFilterView.toggle()
+//                                }
+//                            } label: {
+//                                Image(systemName: "line.3.horizontal.decrease.circle")
+//                                    .font(.subheadline)
+//                            }
                             Button {
                                 withAnimation {
                                     playFeedbackHaptic(selectedFeedbackHaptic)
@@ -175,16 +174,6 @@ struct HomeView: View {
                         }
                         
                     }
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button {
-//                            withAnimation {
-//                                playFeedbackHaptic(selectedFeedbackHaptic)
-//                                showSettingView.toggle()
-//                            }
-//                        } label: {
-//                            Text("Settings")
-//                        }
-//                    }
                     ToolbarItem(placement: .navigationBarLeading) {
                         Text("iWallet")
                             .font(.title)

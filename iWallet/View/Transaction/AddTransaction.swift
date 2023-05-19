@@ -27,53 +27,53 @@ struct AddTransaction: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                        Section {
-                            if selectedType == .expense {
-                                TextField("-100 \(currencySymbol)", text: $amount)
-                                    .font(.title3)
-                                    .keyboardType(.decimalPad)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
-                                    .focused($amountIsFocused)
-                            } else {
-                                TextField("+100 \(currencySymbol)", text: $amount)
-                                    .font(.title3)
-                                    .keyboardType(.decimalPad)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
-                                    .focused($amountIsFocused)
-                            }
-                        } header: {
-                            Text("Enter amount:")
-                                .font(.caption).textCase(.uppercase)
-                                .padding(.leading, 10)
-                        }
-                        .onTapGesture {
-                            amountIsFocused.toggle()
-                        }
-                        
-                        Section {
-                            TextField("Note", text: $note)
+                    Section {
+                        if selectedType == .expense {
+                            TextField("-100 \(currencySymbol)", text: $amount)
+                                .font(.title3)
+                                .keyboardType(.decimalPad)
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
                                 .cornerRadius(10)
                                 .padding(.bottom, 15)
-                                .focused($noteIsFocused)
-                        } header: {
-                            Text("Enter note:")
-                                .font(.caption).textCase(.uppercase)
-                                .padding(.leading, 10)
+                                .focused($amountIsFocused)
+                        } else {
+                            TextField("+100 \(currencySymbol)", text: $amount)
+                                .font(.title3)
+                                .keyboardType(.decimalPad)
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("colorBalanceBG"))
+                                .cornerRadius(10)
+                                .padding(.bottom, 15)
+                                .focused($amountIsFocused)
                         }
-                        .onTapGesture {
-                            noteIsFocused.toggle()
-                        }
+                    } header: {
+                        Text("Enter amount:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    .onTapGesture {
+                        amountIsFocused.toggle()
+                    }
+                    
+                    Section {
+                        TextField("Note", text: $note)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                            .focused($noteIsFocused)
+                    } header: {
+                        Text("Enter note:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    .onTapGesture {
+                        noteIsFocused.toggle()
+                    }
                     
                     Section {
                         Picker("Category type", selection: $selectedType) {
@@ -149,11 +149,16 @@ struct AddTransaction: View {
                     Button {
                         if amount.isEmpty {
                             alertAmount = true
-                        } else if selectedCategory.name == "" {
+                        } else if selectedCategory.name.count == 0 {
                             alertCategory = true
                         } else {
                             playFeedbackHaptic(selectedFeedbackHaptic)
-                            viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                            viewModel.saveTransaction(
+                                amount: Float(amount) ?? 0,
+                                date: date,
+                                note: note,
+                                type: selectedType,
+                                category: selectedCategory)
                             dismiss()
                         }
                     } label: {

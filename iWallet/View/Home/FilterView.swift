@@ -86,5 +86,3 @@ struct FilterView_Previews: PreviewProvider {
         FilterView(showBalance: .constant(true), showExpenseAverage: .constant(true), showIncome: .constant(true), showExpense: .constant(true), showIncomeAverage: .constant(false), showTotalCashFlow: .constant(false))
     }
 }
-
-//BalanceView(amount: viewModel.totalCashFlow(), curren: currencySymbol, type: NSLocalizedString("Total cash flow", comment: "Total cash flow"), icon: "sum", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGray1"))
