@@ -4,6 +4,8 @@
 
 ## It is a personal finance management assessment tool that will help you keep track of your income and expenses, keep an eye on your budget, and achieve your financial goals. Install iWallet and enjoy complete control over your finances!
 
+<a href="http://browserstack.com/](https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/23f4655e-8f02-482c-b41e-7cfa1adca7d3"  width="168"/></a>
+
 ## You can
 * Calculate the average expense per day, taking into account all financial transactions, for more accurate planning and control of your budget.
 
@@ -25,9 +27,6 @@
 * We strive to create an application that is convenient and easy to use, but at the same time functional and powerful. We are constantly working to improve iWallet and add new features so that our users can get the most out of it.
 
 * Our team consists of beginner developers, designers and a huge amount of motivation. We work with open source to ensure that our project is transparent and accessible to everyone. We also welcome contributions from the community and encourage participation in iWallet development.
-
-
-<a href="http://browserstack.com/](https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/23f4655e-8f02-482c-b41e-7cfa1adca7d3"  width="168"/></a>
 
 ## IWALLET TEAM
 > " Our goal is to make iWallet the best financial accounting tool available to everyone. We believe that every person deserves financial stability and we do our best to help them achieve this goal. "
