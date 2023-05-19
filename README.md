@@ -26,6 +26,7 @@
 
 * Our team consists of beginner developers, designers and a huge amount of motivation. We work with open source to ensure that our project is transparent and accessible to everyone. We also welcome contributions from the community and encourage participation in iWallet development.
 
+
 <a href="http://browserstack.com/](https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/23f4655e-8f02-482c-b41e-7cfa1adca7d3"  width="168"/></a>
 
 ## IWALLET TEAM
